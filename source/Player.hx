@@ -52,5 +52,15 @@ class Player extends FlxSprite {
 		if (FlxG.keys.justReleased("Y")) {
 			cast(FlxG.state, PlayState).showDialog();
 		}
+
+		checkOverlays();
+	}
+
+	public function checkOverlays() {
+		if (FlxG.overlap(this, Reg.rechargeStations)) {
+			cast(FlxG.state, PlayState).showOverlay("Z to recharge!");
+		} else {
+			cast(FlxG.state, PlayState).hideOverlay();
+		}
 	}
 }

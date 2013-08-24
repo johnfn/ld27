@@ -23,6 +23,22 @@ class PlayState extends FlxState {
 		this.mode = DIALOG_MODE;
 	}
 
+	public function showOverlay(content:String) {
+		if (Reg.overlay == null) {
+			Reg.overlay = new OverlayText(content);
+			add(Reg.overlay);
+		}
+
+		Reg.overlay.exists = true;
+		Reg.overlay.text = content;
+	}
+
+	public function hideOverlay() {
+		if (Reg.overlay != null) {
+			Reg.overlay.exists = false;
+		}
+	}
+
 	override public function create():Void {
 		// Set a background color
 		FlxG.cameras.bgColor = 0xff131c1b;
@@ -54,6 +70,12 @@ class PlayState extends FlxState {
 
 		Reg.energybar = new EnergyBar();
 		add(Reg.energybar);
+
+		var rc:RechargeStation = new RechargeStation();
+		add(rc);
+
+		rc.x = 60;
+		rc.y = 350;
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package;
 import flixel.util.FlxSave;
 import flixel.FlxState;
 import flixel.tile.FlxTilemap;
+import flixel.group.FlxGroup;
 
 /**
 * Handy, pre-built Registry class that can be used to store 
@@ -15,9 +16,11 @@ class Reg {
 	static public var map:TiledLevel;
 	static public var playState:FlxState;
 	static public var dialogbox:DialogBox;
-
 	static public var timebar:TimeBar;
 	static public var energybar:EnergyBar;
+	static public var overlay:OverlayText = null;
+
+	static public var rechargeStations:FlxGroup = new FlxGroup();
 
 	/**
 	 * Generic levels Array that can be used for cross-state stuff.
