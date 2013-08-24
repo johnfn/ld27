@@ -11,7 +11,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
 class Bullet extends FlxSprite {
-	var owner:FlxSprite;
+	public var owner:FlxSprite;
 	var baseVelocityX:Float;
 	var baseVelocityY:Float;
 
@@ -26,6 +26,9 @@ class Bullet extends FlxSprite {
 		this.owner = owner;
 
 		this.makeGraphic(5, 5, 0xffffff00);
+		this.immovable = true;
+
+		Reg.bullets.add(this);
 	}	
 
 	override public function update() {

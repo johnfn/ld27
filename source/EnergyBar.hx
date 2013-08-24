@@ -13,8 +13,8 @@ import flixel.group.FlxSpriteGroup;
  * A FlxState which can be used for the actual gameplay.
  */
 class EnergyBar extends FlxSpriteGroup {
-	public var amount:Int = 90;
-	public var totalAmount:Int = 90;
+	public var amount:Int = 180;
+	public var totalAmount:Int = 180;
 
 	public var bar:FlxSprite;
 	public var description:FlxText;

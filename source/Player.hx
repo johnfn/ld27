@@ -22,10 +22,23 @@ class Player extends FlxSprite {
 		makeGraphic(25, 25, 0xffff0000);
 	}
 
+	public function collideWithBullet(player:Player, bullet:Bullet) {
+		if (bullet.owner == player) {
+			return;
+		}
+
+		if (Reg.timeDilationRate == Reg.normalTimeDilationRate) {
+			trace("ouch!");
+		} else {
+			FlxObject.separate(player, bullet);
+		}
+	}
+
 	public override function update() {
 		super.update();
 
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations);
+		FlxG.overlap(this, Reg.bullets, collideWithBullet);
 
 		acceleration.y = 1000;
 

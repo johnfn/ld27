@@ -21,8 +21,10 @@ class Reg {
 	static public var overlay:OverlayText = null;
 
 	static public var timeDilationRate:Int = 10;
+	static public var normalTimeDilationRate:Int = 10;
 
 	static public var rechargeStations:FlxGroup = new FlxGroup();
+	static public var bullets:FlxGroup = new FlxGroup();
 
 	/**
 	 * Generic levels Array that can be used for cross-state stuff.
