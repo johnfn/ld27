@@ -41,5 +41,9 @@ class Player extends FlxSprite {
 			velocity.x = 300;
 			this.facing = FlxObject.RIGHT;
 		}
+
+		if (FlxG.keys.justReleased("Y")) {
+			cast(FlxG.state, PlayState).showDialog();
+		}
 	}
 }

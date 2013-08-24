@@ -1,6 +1,7 @@
 package;
 
 import flixel.util.FlxSave;
+import flixel.FlxState;
 import flixel.tile.FlxTilemap;
 
 /**
@@ -12,6 +13,8 @@ class Reg {
 
 	static public var player:Player;
 	static public var map:TiledLevel;
+	static public var playState:FlxState;
+	static public var dialogbox:DialogBox;
 
 	/**
 	 * Generic levels Array that can be used for cross-state stuff.

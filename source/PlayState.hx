@@ -12,9 +12,17 @@ import flixel.tile.FlxTilemap;
  * A FlxState which can be used for the actual gameplay.
  */
 class PlayState extends FlxState {
-	/**
-	 * Function that is called up when to state is created to set it up. 
-	 */
+	public static var NORMAL_MODE:Int = 1;
+	public static var DIALOG_MODE:Int = 2;
+
+	public var mode:Int = 1;
+
+	public function showDialog() {
+		Reg.dialogbox = new DialogBox(["HerpDerp!", "Yayay!"]);
+		this.add(Reg.dialogbox);
+		this.mode = DIALOG_MODE;
+	}
+
 	override public function create():Void {
 		// Set a background color
 		FlxG.cameras.bgColor = 0xff131c1b;
@@ -38,6 +46,7 @@ class PlayState extends FlxState {
 
 		Reg.player.x = 50;
 		Reg.player.y = 50;
+		Reg.playState = this;
 	}
 	
 	/**
@@ -52,6 +61,22 @@ class PlayState extends FlxState {
 	 * Function that is called once every frame.
 	 */
 	override public function update():Void {
-		super.update();
+		if (mode == NORMAL_MODE) {
+			super.update();
+		} else if (mode == DIALOG_MODE) {
+			Reg.dialogbox.update();
+
+			if (FlxG.keys.justReleased("X")) {
+				Reg.dialogbox.next();
+			}
+
+			if (Reg.dialogbox.done()) {
+				this.remove(Reg.dialogbox);
+				Reg.dialogbox.destroy();
+				mode = NORMAL_MODE;
+
+				trace('setting mode back to $mode');
+			}
+		}
 	}	
 }
