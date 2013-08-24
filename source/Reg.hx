@@ -16,6 +16,9 @@ class Reg {
 	static public var playState:FlxState;
 	static public var dialogbox:DialogBox;
 
+	static public var timebar:TimeBar;
+	static public var energybar:EnergyBar;
+
 	/**
 	 * Generic levels Array that can be used for cross-state stuff.
 	 * Example usage: Storing the levels of a platformer.

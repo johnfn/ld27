@@ -32,7 +32,6 @@ class PlayState extends FlxState {
 		#end
 		
 		super.create();
-
 		var level:TiledLevel;
 
 		level = new TiledLevel("maps/map.tmx", "images/tiles.png", 25);
@@ -47,6 +46,14 @@ class PlayState extends FlxState {
 		Reg.player.x = 50;
 		Reg.player.y = 50;
 		Reg.playState = this;
+
+		Reg.timebar = new TimeBar();
+		add(Reg.timebar);
+		Reg.timebar.x = 0;
+		Reg.timebar.y = 400;
+
+		Reg.energybar = new EnergyBar();
+		add(Reg.energybar);
 	}
 	
 	/**

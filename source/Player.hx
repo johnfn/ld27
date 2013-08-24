@@ -42,6 +42,13 @@ class Player extends FlxSprite {
 			this.facing = FlxObject.RIGHT;
 		}
 
+		if (FlxG.keys.Z && Reg.energybar.canDrain()) {
+			Reg.timebar.distortTime();
+			Reg.energybar.drain();
+		} else {
+			Reg.timebar.normalTime();
+		}
+
 		if (FlxG.keys.justReleased("Y")) {
 			cast(FlxG.state, PlayState).showDialog();
 		}
