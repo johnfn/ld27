@@ -41,11 +41,11 @@ class EnergyBar extends FlxSpriteGroup {
 	public function drain() {
 		if (!restoring) {
 			amount -= 1;
-
-			if (amount <= 0) {
-				restoring = true;
-			}
 		}
+	}
+
+	public function restore() {
+		restoring = true;
 	}
 
 	private function drawBar() {

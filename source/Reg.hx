@@ -20,6 +20,8 @@ class Reg {
 	static public var energybar:EnergyBar;
 	static public var overlay:OverlayText = null;
 
+	static public var timeDilationRate:Int = 10;
+
 	static public var rechargeStations:FlxGroup = new FlxGroup();
 
 	/**

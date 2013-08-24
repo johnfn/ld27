@@ -76,6 +76,8 @@ class PlayState extends FlxState {
 
 		rc.x = 60;
 		rc.y = 350;
+
+		add(new ShooterEnemy(200, 350));
 	}
 	
 	/**
@@ -103,8 +105,6 @@ class PlayState extends FlxState {
 				this.remove(Reg.dialogbox);
 				Reg.dialogbox.destroy();
 				mode = NORMAL_MODE;
-
-				trace('setting mode back to $mode');
 			}
 		}
 	}	
