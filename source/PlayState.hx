@@ -89,6 +89,9 @@ class PlayState extends FlxState {
 		Reg.player.x = 50;
 		Reg.player.y = 50;
 
+		var ls:LaserSource = new LaserSource(100, 150);
+		add(ls);
+
 		FlxG.camera.follow(Reg.player, FlxCamera.STYLE_PLATFORMER);
 		FlxG.camera.setBounds(0, 0, 1000, 1000);
 	}

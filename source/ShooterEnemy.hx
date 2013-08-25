@@ -34,8 +34,6 @@ class ShooterEnemy extends Enemy {
 	}
 
 	override public function update() {
-		trace("Im shootin mah lasers." + Math.random());
-
 		cooldown -= 200 / Reg.timeDilationRate;
 
 		if (cooldown < 0) {
