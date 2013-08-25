@@ -11,18 +11,20 @@ import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
 class MapAwareSprite extends FlxSprite {
+	private function onCurrentMap() {
+		return (this.x >= Reg.mapX * Reg.mapWidth && this.x <= (Reg.mapX + 1) * Reg.mapWidth && 
+		        this.y >= Reg.mapY * Reg.mapHeight && this.y <= (Reg.mapY + 1) * Reg.mapHeight);
+	}
 	// Only update if we're actually within camera bounds.
 	public override function update() {
 		if (!this.active) {
-			this.active = this.onScreen(FlxG.camera);
+			this.active = this.onCurrentMap();
 
 			if (this.active) {
 				Reg.inactives.remove(this);
 			}
 		} else {
-			this.active = this.onScreen(FlxG.camera);
-
-			trace("I just became inactive!");
+			this.active = this.onCurrentMap();
 
 			if (!this.active) {
 				Reg.inactives.add(this);

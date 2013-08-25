@@ -34,7 +34,7 @@ class Bullet extends MapAwareSprite {
 	override public function update() {
 		super.update();
 
-		if (!this.onScreen(FlxG.camera)) {
+		if (!this.onCurrentMap()) {
 			this.exists = false;
 		}
 
