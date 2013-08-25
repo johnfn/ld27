@@ -18,9 +18,14 @@ class TimeBar extends FlxSpriteGroup {
 	public var bar:FlxSprite;
 	public var timeLeftText:FlxText;
 	public var rateText:FlxText;
+	public var backgroundBar:FlxSprite;
 
 	public function new() {
 		super();
+
+		backgroundBar = new FlxSprite();
+		backgroundBar.makeGraphic(FlxG.width, 15, 0xff000066);
+		add(backgroundBar);
 
 		bar = new FlxSprite();
 		bar.makeGraphic(FlxG.width, 15, 0xff0000ff);

@@ -37,9 +37,9 @@ class LaserSource extends Enemy {
 
 		super(0, 0);
 
-		this.makeGraphic(1000, 1000, 0x00000000);
-		this.width = 1000;
-		this.height = 1000;
+		this.makeGraphic(Reg.mapWidth, Reg.mapHeight, 0x00000000);
+		this.width = Reg.mapWidth;
+		this.height = Reg.mapHeight;
 	}	
 
 	public function followTarget(target:FlxObject) {

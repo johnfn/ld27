@@ -26,8 +26,8 @@ class Reg {
 
 	static public var mapX:Int = 0;
 	static public var mapY:Int = 0;
-	static public var mapWidth:Int = 1000;
-	static public var mapHeight:Int = 1000;
+	static public var mapWidth:Int = 750;
+	static public var mapHeight:Int = 750;
 
 	static public var rechargeStations:FlxGroup = new FlxGroup();
 	static public var bullets:FlxGroup = new FlxGroup();
@@ -55,8 +55,8 @@ class Reg {
 							       , "you", "...Oh."
 							       , "narrator", "You realize that talking to other people when you're moving so fast may not be the best use of your time."
 							       ]
-						, ["0,1"], [ "Her", "Hmmmmm?"
-						           , "You", "Indeed..."
+						, ["1,0"], [ "narrator", "You hear the sounds of machinery."
+								   , "narrator", "Sounds like someone up ahead is hard at work!"
 						           ]
 			            ];
 

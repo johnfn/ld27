@@ -45,6 +45,9 @@ class TiledLevel extends TiledMap
 		var layer:FlxTilemap = loadLayer("Map");
 		collidableTileLayers.push(layer);
 		foregroundTiles.add(layer);
+
+		var bglayer:FlxTilemap = loadLayer("nocollide");
+		backgroundTiles.add(bglayer);
 	}
 
 	public function loadLayer(layer:String):FlxTilemap {
@@ -76,8 +79,7 @@ class TiledLevel extends TiledMap
 		}
 	}
 
-	private function loadObject(o:TiledObject, g:TiledObjectGroup, state:PlayState)
-	{
+	private function loadObject(o:TiledObject, g:TiledObjectGroup, state:PlayState) {
 		var x:Int = o.x;
 		var y:Int = o.y;
 
@@ -85,36 +87,14 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 
-			/*
+		trace(o.type);
+		/*
 		switch (o.type.toLowerCase()) {
 			case "enemy":
 				var e:Enemy = new Enemy();
 				e.x = x;
 				e.y = y;
 				state.add(e);
-
-			case "player_start":
-				var player = new FlxSprite(x, y);
-				player.makeGraphic(32, 32, 0xffaa1111);
-				player.maxVelocity.x = 160;
-				player.maxVelocity.y = 400;
-				player.acceleration.y = 400;
-				player.drag.x = player.maxVelocity.x * 4;
-				FlxG.camera.follow(player);
-				state.add(player);
-
-			case "floor":
-				var floor = new FlxObject(x, y, o.width, o.height);
-
-			case "coin":
-				var tileset = g.map.getGidOwner(o.gid);
-				var coin = new FlxSprite(x, y, c_PATH_LEVEL_TILESHEETS + tileset.imageSource);
-
-			case "exit":
-				// Create the level exit
-				var exit = new FlxSprite(x, y);
-				exit.makeGraphic(32, 32, 0xff3f3f3f);
-				state.add(exit);
 		}
 		*/
 	}

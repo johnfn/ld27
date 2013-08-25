@@ -20,7 +20,7 @@ class PlayState extends FlxState {
 	public var mode:Int = 1;
 
 	public function showDialog() {
-		Reg.dialogbox = new DialogBox(Reg.getDialogAt(0, 0)); //TODO
+		Reg.dialogbox.display(Reg.getDialogAt(Reg.mapX, Reg.mapY));
 		this.add(Reg.dialogbox);
 		this.mode = DIALOG_MODE;
 	}
@@ -44,6 +44,8 @@ class PlayState extends FlxState {
 	override public function create():Void {
 		Reg.initializeDialog();
 
+		Reg.dialogbox = new DialogBox();
+
 		// Set a background color
 		FlxG.cameras.bgColor = 0xff131c1b;
 		// Show the mouse (in case it hasn't been disabled)
@@ -54,8 +56,9 @@ class PlayState extends FlxState {
 		super.create();
 		var level:TiledLevel;
 
-		level = new TiledLevel("maps/map.tmx", "images/tiles.png", 25);
+		level = new TiledLevel("maps/map.tmx", "images/ld27.png", 25);
 		Reg.map = level;
+		add(level.backgroundTiles);
 		add(level.foregroundTiles);
 
 		Reg.map.loadObjects(this);
@@ -65,7 +68,7 @@ class PlayState extends FlxState {
 		Reg.timebar = new TimeBar();
 		add(Reg.timebar);
 		Reg.timebar.x = 0;
-		Reg.timebar.y = 400;
+		Reg.timebar.y = FlxG.height - 15;
 
 		Reg.energybar = new EnergyBar();
 		add(Reg.energybar);
@@ -89,13 +92,14 @@ class PlayState extends FlxState {
 		Reg.player.x = 50;
 		Reg.player.y = 50;
 
-		var ls:LaserSource = new LaserSource(100, 150);
-		add(ls);
+		//var ls:LaserSource = new LaserSource(100, 150);
+		//add(ls);
 
-		ls.followTarget(Reg.player);
+		//ls.followTarget(Reg.player);
 
 		FlxG.camera.follow(Reg.player, FlxCamera.STYLE_PLATFORMER);
-		FlxG.camera.setBounds(0, 0, 1000, 1000);
+		FlxG.camera.setBounds(0, 0, Reg.mapWidth, Reg.mapHeight);
+
 	}
 	
 	/**
@@ -104,6 +108,28 @@ class PlayState extends FlxState {
 	 */
 	override public function destroy():Void {
 		super.destroy();
+	}
+
+	public var hasEntered:Map<String, Bool> = null;
+
+	public function checkEnterDialog(mx:Int, my:Int) {
+		if (hasEntered == null) {
+			hasEntered = new Map();
+		}
+
+		var key:String = '$mx,$my';
+
+		if (hasEntered.exists(key)) {
+			return;
+		}
+
+		hasEntered.set(key, true);
+
+		trace(key);
+
+		if (key == '1,0') {
+			showDialog();
+		}
 	}
 
 	public function checkUpdateScreen() {
@@ -131,6 +157,8 @@ class PlayState extends FlxState {
 
 		if (change) {
 			FlxG.camera.setBounds(Reg.mapX * Reg.mapWidth, Reg.mapY * Reg.mapHeight, Reg.mapWidth, Reg.mapHeight, true);
+
+			checkEnterDialog(Reg.mapX, Reg.mapY);
 		}
 	}
 
