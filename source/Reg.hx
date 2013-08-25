@@ -29,9 +29,12 @@ class Reg {
 	static public var mapWidth:Int = 750;
 	static public var mapHeight:Int = 750;
 
+	static public var endOfWorldTriggered:Bool = false;
+
 	static public var rechargeStations:FlxGroup = new FlxGroup();
 	static public var bullets:FlxGroup = new FlxGroup();
 	static public var talkables:FlxGroup = new FlxGroup();
+	static public var triggers:FlxGroup = new FlxGroup();
 
 	static public var inactives:FlxGroup = new FlxGroup();
 

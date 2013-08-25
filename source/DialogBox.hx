@@ -24,6 +24,7 @@ class DialogBox extends FlxSpriteGroup {
 		add(dialogContainer);
 
 		textbox = new FlxText(180, 170, FlxG.width - 340, "", 16);
+		textbox.useShadow = true;
 
 		this.add(textbox);
 
@@ -43,7 +44,6 @@ class DialogBox extends FlxSpriteGroup {
 
 	public function next() {
 		if (nextText >= text.length) {
-			this.visible = false;
 			nextText++;
 			return;
 		}
@@ -60,6 +60,11 @@ class DialogBox extends FlxSpriteGroup {
 		}
 
 		nextText++;
+	}
+
+	public function backToNormal() {
+		nextText = 0;
+		this.visible = false;
 	}
 
 	public function done():Bool {

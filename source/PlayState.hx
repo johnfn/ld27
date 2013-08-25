@@ -19,8 +19,47 @@ class PlayState extends FlxState {
 
 	public var mode:Int = 1;
 
-	public function showDialog() {
-		Reg.dialogbox.display(Reg.getDialogAt(Reg.mapX, Reg.mapY));
+	public function showDialog(special:String = "") {
+		if (special != "") {
+			trace(special);
+			if (special == "buttonofdoom") {
+				Reg.endOfWorldTriggered = true;
+				Reg.dialogbox.display([ "button", "beep!"
+									   , "professor", "OH MY GOD YOU IDIOT!"
+									   , "you", "...Huh?"
+									   , "professor", "YOU STEPPED ON THE BUTTON!"
+									   , "you", "What button?"
+									   , "professor", "THE ONE YOU STEPPED ON."
+									   , "you", "..."
+									   , "you", "Oh yeah!"
+									   , "professor", "THE END OF THE WORLD BUTTON!!!"
+									   , "you", "What?"
+									   , "professor", "By pressing that button, you've triggered the end of the world!!!"
+									   , "you", "Er..."
+									   , "professor", "That button causes a laser to be emitted from this laser cannon here, which will crash into the red crystal here in a few minutes..."
+									   , "professor", "...causing a chain reaction that will BLOW UP THE WORLD."
+									   , "you", "Why do you have a button that causes the end of the world, anyways?"
+									   , "professor", "That's not important right now."
+									   , "you", "Well, we have a few minutes right? Let's just move the crystal or something."
+									   , "professor", "You're right, we have a few minutes. Let's think this through."
+									   , "narrator", "You shift your feet as you contemplate the problem."
+									   , "button", "BEEP BEEP BOOP BEEP"
+									   , "professor", "OH GOD NO."
+									   , "professor", "YOU JUST PRESSED THE BUTTON AGAIN. NOW WE ONLY HAVE 10 SECONDS!!!"
+									   , "you", "..."
+									   , "you", "Derp."
+									   , "professor", "Here. Put this on. It's highly experimental, and it may explode at any time, but it's our only hope!"
+									   , "you", "...What is it?"
+									   , "professor", "It's my latest creation - a time distortion vest. It'll make time pass for you 20 times slower than it does for anyone else."
+									   , "professor", "The bar on the bottom of your visor will show you the amount of time you have left before the end of the world."
+									   , "professor", "You can also press Z to - for a little bit - slow down time even more. But that requires energy."
+									   , "you", "Neat!"
+									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
+									   ]);
+			}
+		} else {
+			Reg.dialogbox.display(Reg.getDialogAt(Reg.mapX, Reg.mapY));
+		}
 		this.add(Reg.dialogbox);
 		this.mode = DIALOG_MODE;
 	}
@@ -69,6 +108,7 @@ class PlayState extends FlxState {
 		add(Reg.timebar);
 		Reg.timebar.x = 0;
 		Reg.timebar.y = FlxG.height - 15;
+		Reg.timebar.exists = false;
 
 		Reg.energybar = new EnergyBar();
 		add(Reg.energybar);
@@ -125,8 +165,6 @@ class PlayState extends FlxState {
 
 		hasEntered.set(key, true);
 
-		trace(key);
-
 		if (key == '1,0') {
 			showDialog();
 		}
@@ -182,8 +220,7 @@ class PlayState extends FlxState {
 			}
 
 			if (Reg.dialogbox.done()) {
-				this.remove(Reg.dialogbox);
-				Reg.dialogbox.destroy();
+				Reg.dialogbox.backToNormal(); // bad coding... oh well
 				mode = NORMAL_MODE;
 			}
 		}

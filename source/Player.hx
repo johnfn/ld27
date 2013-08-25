@@ -43,6 +43,10 @@ class Player extends FlxSprite {
 		FlxSpriteUtil.flicker(this, 5);
 	}
 
+	public function collideWithTrigger(p:Player, trigger:DialogTrigger) {
+		cast(FlxG.state, PlayState).showDialog(trigger.getID());
+	}
+
 	public function touchingStationCB(player:Player, station:RechargeStation) {
 		station.activate();
 	}
@@ -54,6 +58,7 @@ class Player extends FlxSprite {
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
 
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
+		FlxG.overlap(this, Reg.triggers, collideWithTrigger);
 
 		acceleration.y = 1000;
 
@@ -79,18 +84,21 @@ class Player extends FlxSprite {
 
 		Reg.timeDilationRate = Reg.normalTimeDilationRate;
 
-		if (FlxG.keys.Z && Reg.energybar.canDrain()) {
-			if (touchingStation) {
-				Reg.energybar.restore();
-			} else if (touchingNPC) {
-				cast(FlxG.state, PlayState).showDialog();
+		if (Reg.endOfWorldTriggered) {
+			Reg.timebar.exists = true;
+			if (FlxG.keys.Z && Reg.energybar.canDrain()) {
+				if (touchingStation) {
+					Reg.energybar.restore();
+				} else if (touchingNPC) {
+					cast(FlxG.state, PlayState).showDialog();
+				} else {
+					Reg.timebar.distortTime();
+					Reg.energybar.drain();
+					Reg.timeDilationRate = Reg.superTimeDilationRate;
+				}
 			} else {
-				Reg.timebar.distortTime();
-				Reg.energybar.drain();
-				Reg.timeDilationRate = Reg.superTimeDilationRate;
+				Reg.timebar.normalTime();
 			}
-		} else {
-			Reg.timebar.normalTime();
 		}
 
 		if (FlxG.keys.justReleased("Y")) {

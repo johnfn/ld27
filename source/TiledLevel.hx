@@ -87,16 +87,12 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 
-		trace(o.type);
-		/*
 		switch (o.type.toLowerCase()) {
-			case "enemy":
-				var e:Enemy = new Enemy();
-				e.x = x;
-				e.y = y;
-				state.add(e);
+			case "buttonofdoom":
+				var dt:DialogTrigger = new DialogTrigger(o.type.toLowerCase());
+				dt.x = x;
+				dt.y = y;
 		}
-		*/
 	}
 
 	public function collideWithLevel(obj:FlxObject, ?notifyCallback:FlxObject->FlxObject->Void, ?processCallback:FlxObject->FlxObject->Bool):Bool
