@@ -31,6 +31,11 @@ class TimeBar extends FlxSpriteGroup {
 
 		rateText = new FlxText(FlxG.width - 100, bar.y, 100, "Dilation rate: 10x");
 		add(rateText);
+
+		this.transformChildren(function(c:FlxSprite, theHaxeFlixelTeamDontUnderstandClosures:Dynamic) {
+			c.scrollFactor.x = 0;
+			c.scrollFactor.y = 0;
+		});
 	}
 
 	public override function update() {

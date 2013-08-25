@@ -8,10 +8,12 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
 import flixel.tile.FlxTilemap;
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxSpriteUtil;
 import flixel.FlxObject;
 
 class Player extends FlxSprite {
 	private var touchingStation:Bool = false;
+	private var touchingNPC:Bool = false;
 
 	public function new() {
 		super(0, 0);	
@@ -28,16 +30,29 @@ class Player extends FlxSprite {
 		}
 
 		if (Reg.timeDilationRate == Reg.normalTimeDilationRate) {
-			trace("ouch!");
+			player.resetPosition();
 		} else {
 			FlxObject.separate(player, bullet);
 		}
 	}
 
+	public function resetPosition() {
+		this.x = RechargeStation.lastActivatedRecharge.x;
+		this.y = RechargeStation.lastActivatedRecharge.y;
+
+		FlxSpriteUtil.flicker(this, 5);
+	}
+
+	public function touchingStationCB(player:Player, station:RechargeStation) {
+		station.activate();
+	}
+
 	public override function update() {
 		super.update();
 
-		touchingStation = FlxG.overlap(this, Reg.rechargeStations);
+		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
+		touchingNPC = FlxG.overlap(this, Reg.talkables);
+
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
 
 		acceleration.y = 1000;
@@ -46,6 +61,10 @@ class Player extends FlxSprite {
 
 		if (FlxG.keys.X && this.isTouching(FlxObject.FLOOR)) {
 			velocity.y = -500;
+		}
+
+		if (!FlxG.keys.X && velocity.y < 0) {
+			velocity.y = 0;
 		}
 
 		if (FlxG.keys.LEFT) {
@@ -58,15 +77,17 @@ class Player extends FlxSprite {
 			this.facing = FlxObject.RIGHT;
 		}
 
-		Reg.timeDilationRate = 10;
+		Reg.timeDilationRate = Reg.normalTimeDilationRate;
 
 		if (FlxG.keys.Z && Reg.energybar.canDrain()) {
 			if (touchingStation) {
 				Reg.energybar.restore();
+			} else if (touchingNPC) {
+				cast(FlxG.state, PlayState).showDialog();
 			} else {
 				Reg.timebar.distortTime();
 				Reg.energybar.drain();
-			Reg.timeDilationRate = 100;
+				Reg.timeDilationRate = Reg.superTimeDilationRate;
 			}
 		} else {
 			Reg.timebar.normalTime();
@@ -80,8 +101,10 @@ class Player extends FlxSprite {
 	}
 
 	public function checkOverlays() {
-		if (touchingStation) {
+		if (touchingStation && !Reg.energybar.full()) {
 			cast(FlxG.state, PlayState).showOverlay("Z to recharge!");
+		} else if (touchingNPC) {
+			cast(FlxG.state, PlayState).showOverlay("Z to talk!");
 		} else {
 			cast(FlxG.state, PlayState).hideOverlay();
 		}

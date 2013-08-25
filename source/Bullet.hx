@@ -10,7 +10,7 @@ import flixel.tile.FlxTilemap;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
-class Bullet extends FlxSprite {
+class Bullet extends MapAwareSprite {
 	public var owner:FlxSprite;
 	var baseVelocityX:Float;
 	var baseVelocityY:Float;
@@ -33,13 +33,18 @@ class Bullet extends FlxSprite {
 
 	override public function update() {
 		super.update();
-		
-		if (Reg.map.collideWithLevel(this)) {
-			cast(FlxG.state, PlayState).remove(this);
-			this.destroy();
+
+		if (!this.onScreen(FlxG.camera)) {
+			this.exists = false;
 		}
 
 		this.velocity.x = this.baseVelocityX / Reg.timeDilationRate;
 		this.velocity.y = this.baseVelocityY / Reg.timeDilationRate;
+
+		this.immovable = false;
+		if (Reg.map.collideWithLevel(this)) {
+			this.exists = false;
+		}
+		this.immovable = true;
 	}
 }

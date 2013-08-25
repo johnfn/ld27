@@ -10,8 +10,10 @@ import flixel.tile.FlxTilemap;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
-class Enemy extends MapAwareSprite {
-	public function new(x:Int, y:Int) {
-		super(x, y);
-	}	
+class NPC extends Talkable {
+	public function new() {
+		super();
+
+		this.makeGraphic(25, 25, 0xff00ff00);
+	}
 }
