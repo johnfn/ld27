@@ -19,6 +19,8 @@ class LaserSource extends Enemy {
 
 	private var laserDestX:Float;
 	private var laserDestY:Float;
+	private var laserSourceX:Float;
+	private var laserSourceY:Float;
 
 	private var target:FlxObject = null;
 
@@ -30,7 +32,10 @@ class LaserSource extends Enemy {
 		collisionDummy.width = 1;
 		collisionDummy.height = 1;
 
-		super(x, y);
+		this.laserSourceX = x;
+		this.laserSourceY = y;
+
+		super(0, 0);
 
 		this.makeGraphic(1000, 1000, 0x00000000);
 		this.width = 1000;
@@ -43,12 +48,17 @@ class LaserSource extends Enemy {
 
     // bad style johnfn, bad style, updating private variables instead of using return values! TSK TSK
 	private function raycastToWall() {
-		var dx:Int = 0;
-		var dy:Int = 0;
+		var dx:Float = 0;
+		var dy:Float = 0;
 
 		if (this.target != null) {
-			//TODO
-			throw "haven't implemented laser targets yet.";
+			dx = this.target.x - this.laserSourceX;
+			dy = this.target.y - this.laserSourceY;
+
+			var magnitude:Float = Math.sqrt(dx * dx + dy * dy);
+
+			dx /= magnitude;
+			dy /= magnitude;
 		} else {
 			if (this.facing == FlxObject.LEFT) {
 				dx = -1;
@@ -57,8 +67,8 @@ class LaserSource extends Enemy {
 			}
 		}
 
-		collisionDummy.x = this.x;
-		collisionDummy.y = this.y;
+		collisionDummy.x = laserSourceX;
+		collisionDummy.y = laserSourceY;
 
 		while (collisionDummy.onCurrentMap() && !Reg.map.collideWithLevel(collisionDummy)) {
 			collisionDummy.x += dx * 10;
@@ -79,8 +89,8 @@ class LaserSource extends Enemy {
 		raycastToWall();
 
 		// Outer
-		FlxSpriteUtil.drawLine(this, this.x, this.y, laserDestX, laserDestY, 0xffaa0000, 6 + Std.int(Math.sin(ticker / Reg.timeDilationRate) * 4)); //pulsing brought to you with thanks to Math.sin
+		FlxSpriteUtil.drawLine(this, laserSourceX, laserSourceY, laserDestX, laserDestY, 0xffaa0000, 6 + Std.int(Math.sin(ticker / Reg.timeDilationRate) * 4)); //pulsing brought to you with thanks to Math.sin
 		// Inner
-		FlxSpriteUtil.drawLine(this, this.x, this.y, laserDestX, laserDestY, 0xffff4444, 1);
+		FlxSpriteUtil.drawLine(this, laserSourceX, laserSourceY, laserDestX, laserDestY, 0xffff4444, 1);
 	}
 }
