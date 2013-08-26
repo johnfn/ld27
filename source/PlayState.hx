@@ -9,6 +9,7 @@ import flixel.util.FlxMath;
 import flixel.tile.FlxTilemap;
 import flixel.FlxCamera;
 import flixel.util.FlxRect;
+import flixel.group.FlxGroup;
 import flixel.util.FlxSpriteUtil;
 
 /**
@@ -19,6 +20,8 @@ class PlayState extends FlxState {
 	public static var DIALOG_MODE:Int = 2;
 
 	public static var paused:Bool = false;
+	public static var bgtiles:FlxGroup;
+	public static var tilesAdded:Bool = true;
 
 	public var mode:Int = 1;
 
@@ -122,8 +125,8 @@ class PlayState extends FlxState {
 
 		Reg.dialogbox = new DialogBox();
 
-		// Set a background color
-		FlxG.cameras.bgColor = 0xff131c1b;
+		// Set a (blurry I guess) background color
+		FlxG.cameras.bgColor = 0x11000000;
 		// Show the mouse (in case it hasn't been disabled)
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.show();
@@ -136,6 +139,8 @@ class PlayState extends FlxState {
 		Reg.map = level;
 		add(level.backgroundTiles);
 		add(level.foregroundTiles);
+
+		PlayState.bgtiles = level.backgroundTiles;
 
 		Reg.map.loadObjects(this);
 

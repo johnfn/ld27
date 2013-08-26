@@ -127,6 +127,7 @@ class Player extends FlxSprite {
 		Reg.timebar.normalTime();
 
 		var wantToClearOL:Bool = true;
+		var ps:PlayState = cast(FlxG.state, PlayState);
 
 		if (FlxG.keys.Z) {
 			if (touchingStation) {
@@ -156,6 +157,20 @@ class Player extends FlxSprite {
 					outOfEnergyOL = true;
 					wantToClearOL = false;
 				}
+			}
+		}
+
+		// Funky blur effect
+		if (Reg.timeDilationRate > Reg.normalTimeDilationRate) {
+			if (PlayState.tilesAdded) {
+				PlayState.bgtiles.visible = false;
+				PlayState.tilesAdded = false;
+			}
+		}
+		if (Reg.timeDilationRate == Reg.normalTimeDilationRate) {
+			if (!PlayState.tilesAdded) {
+				PlayState.bgtiles.visible = true;
+				PlayState.tilesAdded = true;
 			}
 		}
 
