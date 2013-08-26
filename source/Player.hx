@@ -88,11 +88,17 @@ class Player extends FlxSprite {
 
 		if (Reg.endOfWorldTriggered) {
 			Reg.timebar.exists = true;
+			Reg.energybar.exists = true;
 			if (FlxG.keys.Z && Reg.energybar.canDrain()) {
 				if (touchingStation) {
 					Reg.energybar.restore();
 				} else if (touchingNPC) {
-					cast(FlxG.state, PlayState).showDialog();
+					if (Reg.mapX == 1 && Reg.mapY == 1) {
+						// This is just a hack because i have 2 things on 1,1.
+						cast(FlxG.state, PlayState).showDialog("1,1NPC");
+					} else {
+						cast(FlxG.state, PlayState).showDialog();
+					}
 				} else {
 					Reg.timebar.distortTime();
 					Reg.energybar.drain();
@@ -104,9 +110,14 @@ class Player extends FlxSprite {
 		} else {
 			if (FlxG.keys.Z) {
 				if (touchingNPC) {
-					cast(FlxG.state, PlayState).showDialog();
+					if (Reg.mapX == 1 && Reg.mapY == 1) {
+						// This is just a hack because i have 2 things on 1,1.
+						cast(FlxG.state, PlayState).showDialog("1,1NPC");
+					} else {
+						cast(FlxG.state, PlayState).showDialog();
+					}
 				}
-				
+
 				if (touchingDoor) {
 					cast(FlxG.state, PlayState).showDialog("doorjoke");
 					DoorJoke.playedOut = true;

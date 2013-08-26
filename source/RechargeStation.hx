@@ -17,6 +17,10 @@ class RechargeStation extends FlxSprite {
 	public function new() {
 		super(0, 0);	
 
+		this.loadGraphic("images/recharger.png", true, false, 25, 25);
+		this.addAnimation("deactivated", [0]);
+		this.addAnimation("activated", [1]);
+
 		this.drag.x = 2000;
 		this.drag.y = 2000;
 		this.deactivate();
@@ -26,6 +30,7 @@ class RechargeStation extends FlxSprite {
 		if (RechargeStation.lastActivatedRecharge == null) {
 			RechargeStation.lastActivatedRecharge = this;
 		}
+
 	}
 
 	public function activate() {
@@ -35,11 +40,10 @@ class RechargeStation extends FlxSprite {
 
 		RechargeStation.lastActivatedRecharge = this;
 		activated = true;
-		makeGraphic(25, 25, 0xffffffff);
+		this.play("activated");
 	}
 
 	public function deactivate() {
-		makeGraphic(25, 25, 0xffff0000);
-		activated = false;
+		this.play("deactivated");
 	}
 }

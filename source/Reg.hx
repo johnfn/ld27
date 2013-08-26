@@ -47,21 +47,12 @@ class Reg {
 		// with a for loop or something. I guess I could read from a file, but that seems like more trouble than it's worth.
 
 		// yay ludum dare!!!!!
-		Reg.allDialog = [ ["1,1"], [ "randomnpc", "H..."
-							       , "you", "..."
-							       , "randomnpc", "E..."
-							       , "you", "..."
-							       , "randomnpc", "L..."
-							       , "you", "..."
-							       , "randomnpc", "L..."
-							       , "you", "Watch your tongue, old lady!"
-							       , "randomnpc", "...O."
-							       , "you", "..."
-							       , "you", "...Oh."
-							       , "narrator", "You realize that talking to other people when you're moving so fast may not be the best use of your time."
-							       ]
-						, ["1,0"], [ "narrator", "You hear the sounds of machinery."
+		Reg.allDialog = [ ["1,0"], [ "narrator", "You hear the sounds of machinery."
 								   , "narrator", "Sounds like someone up ahead is hard at work!"
+						           ]
+						, ["1,1"], [ "you", "See that weird machine with a red dot on it?"
+								   , "you", "I bet that's a recharger. If I stand on it and press Z, I can recharge my time distortion energy."
+								   , "you", "It'll also act as a respawn point in case I die."
 						           ]
 			            ];
 

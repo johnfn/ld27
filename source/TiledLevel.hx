@@ -100,6 +100,11 @@ class TiledLevel extends TiledMap
 				var dj:DoorJoke = new DoorJoke();
 				dj.x = x;
 				dj.y = y;
+			case "recharger":
+				var rc:RechargeStation = new RechargeStation();
+				rc.x = x;
+				rc.y = y;
+				FlxG.state.add(rc);
 		}
 	}
 

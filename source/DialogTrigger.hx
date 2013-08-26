@@ -10,7 +10,7 @@ import flixel.tile.FlxTilemap;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
-class DialogTrigger extends Talkable {
+class DialogTrigger extends FlxSprite {
 	private var hasTriggered:Bool = false;
 	private var id:String;
 
@@ -25,7 +25,7 @@ class DialogTrigger extends Talkable {
 
 	public function getID():String {
 		Reg.triggers.remove(this);
-		this.destroy();
+		FlxG.state.remove(this);
 
 		return this.id;
 	}

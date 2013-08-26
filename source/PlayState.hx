@@ -31,7 +31,7 @@ class PlayState extends FlxState {
 			if (special == "buttonofdoom") {
 				Reg.endOfWorldTriggered = true;
 				Reg.dialogbox.display([ "button", "beep!"
-									   , "professor", "OH MY GOD YOU IDIOT!"
+									  /* , "professor", "OH MY GOD YOU IDIOT!"
 									   , "you", "...Huh?"
 									   , "professor", "YOU STEPPED ON THE BUTTON!"
 									   , "you", "What button?"
@@ -62,7 +62,7 @@ class PlayState extends FlxState {
 									   , "professor", "The bar on the bottom of your visor will show you the amount of time you have left before the end of the world."
 									   , "professor", "You can also press Z to - for a little bit - slow down time even more. But that requires energy."
 									   , "you", "Neat!"
-									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
+									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"*/
 									   ]);
 			}
 
@@ -73,19 +73,30 @@ class PlayState extends FlxState {
 									   , "you", "I REFUSE."
 									   ]);
 			}
+
+			if (special == "1,1NPC") {
+				Reg.dialogbox.display([ "randomnpc", "H..."
+								       , "you", "..."
+								       , "randomnpc", "E..."
+								       , "you", "..."
+								       , "randomnpc", "L..."
+								       , "you", "...zzz..."
+								       , "randomnpc", "L..."
+								       , "you", "Watch your tongue, old lady!"
+								       , "randomnpc", "...O."
+								       , "you", "..."
+								       , "you", "...Oh."
+								       , "narrator", "You realize that talking to other people when you're moving so fast may not be the best use of your time."
+								       ]);
+			}
 		} else {
 			Reg.dialogbox.display(Reg.getDialogAt(Reg.mapX, Reg.mapY));
 		}
-		this.add(Reg.dialogbox);
+
 		this.mode = DIALOG_MODE;
 	}
 
 	public function showOverlay(content:String) {
-		if (Reg.overlay == null) {
-			Reg.overlay = new OverlayText(content);
-			add(Reg.overlay);
-		}
-
 		Reg.overlay.exists = true;
 		Reg.overlay.text = content;
 	}
@@ -128,12 +139,7 @@ class PlayState extends FlxState {
 
 		Reg.energybar = new EnergyBar();
 		add(Reg.energybar);
-
-		var rc:RechargeStation = new RechargeStation();
-		add(rc);
-
-		rc.x = 60;
-		rc.y = 350;
+		Reg.energybar.exists = false;
 
 		add(new ShooterEnemy(200, 350));
 
@@ -142,7 +148,7 @@ class PlayState extends FlxState {
 
 		//ls.followTarget(Reg.player);
 
-		Reg.mapX = 0;
+		Reg.mapX = 1;
 		Reg.mapY = 0;
 
 		Reg.player = new Player();
@@ -153,6 +159,12 @@ class PlayState extends FlxState {
 
 		FlxG.camera.follow(Reg.player, FlxCamera.STYLE_PLATFORMER);
 		FlxG.camera.setBounds(Reg.mapX * Reg.mapWidth, Reg.mapY * Reg.mapHeight, Reg.mapWidth, Reg.mapHeight);
+
+		Reg.overlay = new OverlayText("");
+		add(Reg.overlay);
+		Reg.overlay.exists = false;
+
+		this.add(Reg.dialogbox);
 	}
 	
 	/**
@@ -179,6 +191,10 @@ class PlayState extends FlxState {
 		hasEntered.set(key, true);
 
 		if (key == '1,0') {
+			showDialog();
+		}
+
+		if (key == '1,1') {
 			showDialog();
 		}
 	}
