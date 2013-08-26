@@ -92,6 +92,7 @@ class TiledLevel extends TiledMap
 				var dt:DialogTrigger = new DialogTrigger(o.type.toLowerCase());
 				dt.x = x;
 				dt.y = y;
+				FlxG.state.add(dt);
 			case "npc":
 				var npc:NPC = new NPC();
 				npc.x = x;

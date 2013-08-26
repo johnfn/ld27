@@ -78,8 +78,6 @@ class Player extends FlxSprite {
 			return false; //not obstructed by the ladder
 		});
 
-		trace(Reg.triggers.length);
-
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
 		FlxG.overlap(this, Reg.triggers, null, collideWithTrigger);
 
