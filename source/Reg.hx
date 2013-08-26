@@ -69,6 +69,15 @@ class Reg {
 						            "you", "...Except that weird glimmering section of the air.",
 						            "you", "Eh, I'm sure it'll do absolutely nothing."
 						            ]
+						, ["2,2"], ["you", "Phew...",
+						            "you", "That was REALLY HARD.",
+						            "you", "Well, I bet was probably the hardest part of my adventure.",
+						            "you", "I'm sure this next room won't be... HOLY CRAP."
+						            ]
+						 , ["3,1"], ["you", "HOLY CRAP! I can't jump that far.",
+						             "you", "D:",
+						             "you", "I give up!"
+						            ]
 			            ];
 	}
 

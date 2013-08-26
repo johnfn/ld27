@@ -19,11 +19,12 @@ class DialogTrigger extends FlxSprite {
 
 		Reg.triggers.add(this);
 
-		this.makeGraphic(25, 25, 0x00000000);
+		this.makeGraphic(25, 25, 0);
 		this.id = id;
 	}
 
 	public function getID():String {
+		trace(this.x + " " + this.y + " " + this.width + " " + this.height);
 		Reg.triggers.remove(this);
 		FlxG.state.remove(this);
 

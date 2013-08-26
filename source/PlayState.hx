@@ -34,7 +34,6 @@ class PlayState extends FlxState {
 			if (special == "buttonofdoom") {
 				Reg.endOfWorldTriggered = true;
 				Reg.dialogbox.display([ "button", "beep!"
-					#if DEBUG
 									   , "professor", "OH MY GOD YOU IDIOT!"
 									   , "you", "...Huh?"
 									   , "professor", "YOU STEPPED ON THE BUTTON!"
@@ -67,7 +66,6 @@ class PlayState extends FlxState {
 									   , "professor", "You can also press Z to - for a little bit - slow down time even more. But that requires energy."
 									   , "you", "Neat!"
 									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
-									   #end
 									   ]);
 			}
 
@@ -155,8 +153,8 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 3;
-		Reg.mapY = 1;
+		Reg.mapX = 0;
+		Reg.mapY = 0;
 
 		Reg.player = new Player();
 		add(Reg.player);

@@ -49,8 +49,10 @@ class Player extends FlxSprite {
 		FlxSpriteUtil.flicker(this, 1);
 	}
 
-	public function collideWithTrigger(p:Player, trigger:DialogTrigger) {
+	public function collideWithTrigger(p:Player, trigger:DialogTrigger):Bool {
 		cast(FlxG.state, PlayState).showDialog(trigger.getID());
+
+		return false;
 	}
 
 	public function touchingStationCB(player:Player, station:RechargeStation) {
@@ -76,8 +78,10 @@ class Player extends FlxSprite {
 			return false; //not obstructed by the ladder
 		});
 
+		trace(Reg.triggers.length);
+
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
-		FlxG.overlap(this, Reg.triggers, collideWithTrigger);
+		FlxG.overlap(this, Reg.triggers, null, collideWithTrigger);
 
 		if (touchingLadder) {
 			acceleration.y = 0;
