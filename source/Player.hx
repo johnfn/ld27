@@ -46,7 +46,7 @@ class Player extends FlxSprite {
 		this.x = RechargeStation.lastActivatedRecharge.x;
 		this.y = RechargeStation.lastActivatedRecharge.y  - 25;
 
-		FlxSpriteUtil.flicker(this, 5);
+		FlxSpriteUtil.flicker(this, 1);
 	}
 
 	public function collideWithTrigger(p:Player, trigger:DialogTrigger) {
@@ -157,6 +157,7 @@ class Player extends FlxSprite {
 
 		if (touchingNoEnergy) {
 			Reg.energybar.drainAllEnergy();
+			Reg.energybar.draw();
 			if (!Reg.explainedNoEnergy) {
 				Reg.explainedNoEnergy = true;
 				cast(FlxG.state, PlayState).showDialog("noenergy");

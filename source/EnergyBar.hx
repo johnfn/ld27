@@ -24,6 +24,7 @@ class EnergyBar extends FlxSpriteGroup {
 	public var description:FlxText;
 
 	private var restoring:Bool = false;
+	private var draining:Bool = false;
 
 	public function new() {
 		super();
@@ -53,7 +54,6 @@ class EnergyBar extends FlxSpriteGroup {
 		bar.x = 5;
 		bar.y = 5;
 
-
 		description = new FlxText(5, 5, 50, "Energy");
 		description.color = 0;
 		add(description);
@@ -66,7 +66,7 @@ class EnergyBar extends FlxSpriteGroup {
 	}	
 
 	public function drainAllEnergy() {
-		this.amount = 0;
+		this.draining = true;
 	}
 
 	public function full() {
@@ -95,6 +95,13 @@ class EnergyBar extends FlxSpriteGroup {
 	}
 
 	public override function update() {
+		if (draining) {
+			amount -= 10;
+			if (amount <= 0) {
+				amount = 0;
+				draining = false;
+			}
+		}
 		if (restoring) {
 			amount += Reg.timeDilationRate;
 			if (amount >= totalAmount) {

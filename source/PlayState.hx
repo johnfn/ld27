@@ -73,10 +73,8 @@ class PlayState extends FlxState {
 
 			if (special == "noenergy") {
 				Reg.dialogbox.display(["you", "GAH! All my energy is gone!!!",
-					                   "you", "I feel so useless!",
-					                   "you", "I feel so worthless!",
-					                   "professor", "You are.",
-					                   "you", "Hey! Where did you come from?",
+									   "you", "So THAT's what the sparkles do?",
+									   "you", "Why is there even a recharge station here if the energy is COMPLETELY USELESS?"
 					                   ]);
 			}
 
@@ -157,8 +155,8 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 0;
-		Reg.mapY = 1;
+		Reg.mapX = 1;
+		Reg.mapY = 2;
 
 		Reg.player = new Player();
 		add(Reg.player);
