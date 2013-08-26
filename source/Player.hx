@@ -19,6 +19,7 @@ class Player extends FlxSprite {
 	private var touchingLadder:Bool = false;
 
 	private var outOfEnergyOL:Bool = false;
+	private var touchingNoEnergy:Bool = false;
 
 	public function new() {
 		super(0, 0);	
@@ -62,6 +63,8 @@ class Player extends FlxSprite {
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
 		touchingDoor = FlxG.overlap(this, Reg.doorJoke);
+		touchingNoEnergy = FlxG.overlap(this, Reg.noenergy);
+
 		touchingLadder = false;
 		FlxG.overlap(this, Reg.ladders, null, function(p:Player, l:Ladder):Bool {
 			touchingLadder = true;
@@ -140,7 +143,6 @@ class Player extends FlxSprite {
 					cast(FlxG.state, PlayState).showDialog();
 				}
 			} else if (Reg.endOfWorldTriggered) {
-				trace("eowt");
 				if (Reg.energybar.canDrain()) {
 					Reg.timebar.distortTime();
 					Reg.energybar.drain();
@@ -153,6 +155,13 @@ class Player extends FlxSprite {
 			}
 		}
 
+		if (touchingNoEnergy) {
+			Reg.energybar.drainAllEnergy();
+			if (!Reg.explainedNoEnergy) {
+				Reg.explainedNoEnergy = true;
+				cast(FlxG.state, PlayState).showDialog("noenergy");
+			}
+		} 
 
 		checkOverlays();
 	}

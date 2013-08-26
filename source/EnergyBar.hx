@@ -65,6 +65,10 @@ class EnergyBar extends FlxSpriteGroup {
 		description.scrollFactor.y = 0;
 	}	
 
+	public function drainAllEnergy() {
+		this.amount = 0;
+	}
+
 	public function full() {
 		return amount == totalAmount;
 	}

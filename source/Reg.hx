@@ -38,6 +38,9 @@ class Reg {
 	static public var triggers:FlxGroup = new FlxGroup();
 	static public var ladders:FlxGroup = new FlxGroup();
 
+	static public var explainedNoEnergy:Bool = false;
+	static public var noenergy:FlxGroup = new FlxGroup();
+
 	static public var inactives:FlxGroup = new FlxGroup();
 	static public var doorJoke:FlxSprite;
 
@@ -61,9 +64,21 @@ class Reg {
 						            "you", "Crap... there's no way I can get past that without dying.",
 						            "you", "I guess I should just give up and let the world explode."
 						            ]
+						, ["1,2"], ["you", "Ha! This screen looks exactly the same as the last one.",
+						            "you", "...Except that weird glimmering section of the air.",
+						            "you", "Eh, I'm sure it'll do absolutely nothing."
+						            ]
 			            ];
+	}
 
-		 
+	static public function hasDialogKey(s:String):Bool {
+		for (x in 0...Reg.allDialog.length) {
+			if (Reg.allDialog[x][0] == s) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	static public function getDialogAt(mapX:Int, mapY:Int):Array<String> {

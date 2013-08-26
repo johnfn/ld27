@@ -10,11 +10,11 @@ import flixel.tile.FlxTilemap;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxObject;
 
-class Ladder extends MapAwareSprite {
+class NoEnergy extends MapAwareSprite {
 	public function new() {
 		super();
 
-		Reg.ladders.add(this);
+		Reg.noenergy.add(this);
 		this.makeGraphic(25, 25, 0);
 	}
 }

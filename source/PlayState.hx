@@ -71,6 +71,15 @@ class PlayState extends FlxState {
 									   ]);
 			}
 
+			if (special == "noenergy") {
+				Reg.dialogbox.display(["you", "GAH! All my energy is gone!!!",
+					                   "you", "I feel so useless!",
+					                   "you", "I feel so worthless!",
+					                   "professor", "You are.",
+					                   "you", "Hey! Where did you come from?",
+					                   ]);
+			}
+
 			if (special == "doorjoke") {
 				Reg.dialogbox.display([ "you", "...Huh?"
 									   , "you", "Enter that house?"
@@ -194,7 +203,7 @@ class PlayState extends FlxState {
 
 		hasEntered.set(key, true);
 
-		if (key == '1,0' || key == '1,1' || key == '0,2') {
+		if (Reg.hasDialogKey(key)) {
 			showDialog();
 		}
 	}
