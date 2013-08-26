@@ -15,22 +15,47 @@ import flixel.group.FlxSpriteGroup;
 class EnergyBar extends FlxSpriteGroup {
 	public var amount:Int = 180;
 	public var totalAmount:Int = 180;
+	public var barWidth:Int = 200;
+	public var barHeight:Int = 15;
 
+	public var whitebar:FlxSprite;
 	public var bar:FlxSprite;
+	public var outline:FlxSprite;
 	public var description:FlxText;
 
 	private var restoring:Bool = false;
 
 	public function new() {
 		super();
+
+		outline = new FlxSprite();
+
+		outline.x = 4;
+		outline.y = 4;
+		outline.makeGraphic(barWidth + 2, barHeight + 2, 0xff000000);
+		outline.scrollFactor.x = 0;
+		outline.scrollFactor.y = 0;
+
+		add(outline);
+
+		whitebar = new FlxSprite();
+		whitebar.x = 5;
+		whitebar.y = 5;
+		whitebar.makeGraphic(barWidth, barHeight, 0xffffffff);
+		whitebar.scrollFactor.x = 0;
+		whitebar.scrollFactor.y = 0;
 		
+		add(whitebar);
+
 		bar = new FlxSprite();
 		add(bar);
 
-		bar.x = 0;
+		bar.x = 5;
 		bar.y = 5;
 
-		description = new FlxText(0, 5, 50, "Energy");
+
+		description = new FlxText(5, 5, 50, "Energy");
+		description.color = 0;
 		add(description);
 
 		bar.scrollFactor.x = 0;
@@ -59,7 +84,10 @@ class EnergyBar extends FlxSpriteGroup {
 	}
 
 	private function drawBar() {
-		bar.makeGraphic(Std.int(200 * (amount / totalAmount)), 10, 0xff00ff00);
+		var width:Int = Std.int(this.barWidth * (amount / totalAmount));
+
+		if (width < 2) width = 2;
+		bar.makeGraphic(width, this.barHeight, 0xff00ff00);
 	}
 
 	public override function update() {

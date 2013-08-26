@@ -34,7 +34,8 @@ class PlayState extends FlxState {
 			if (special == "buttonofdoom") {
 				Reg.endOfWorldTriggered = true;
 				Reg.dialogbox.display([ "button", "beep!"
-									  /* , "professor", "OH MY GOD YOU IDIOT!"
+					#if DEBUG
+									   , "professor", "OH MY GOD YOU IDIOT!"
 									   , "you", "...Huh?"
 									   , "professor", "YOU STEPPED ON THE BUTTON!"
 									   , "you", "What button?"
@@ -65,7 +66,8 @@ class PlayState extends FlxState {
 									   , "professor", "The bar on the bottom of your visor will show you the amount of time you have left before the end of the world."
 									   , "professor", "You can also press Z to - for a little bit - slow down time even more. But that requires energy."
 									   , "you", "Neat!"
-									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"*/
+									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
+									   #end
 									   ]);
 			}
 

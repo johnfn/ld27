@@ -57,5 +57,8 @@
 	<!--<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />-->
 	
 	<!--Disable the Flixel core debugger-->
-	<!--<haxedef name="FLX_NO_DEBUG" />-->
+	<!--<haxedef name="FLX_NO_DEBUG" /> -->
+	<!-- 
+	<haxedef name="DEBUG" />
+-->
 </project>

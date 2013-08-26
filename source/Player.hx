@@ -113,6 +113,11 @@ class Player extends FlxSprite {
 				if (touchingStation) {
 					Reg.energybar.restore();
 				} else if (touchingNPC) {
+					FlxG.overlap(this, Reg.talkables, null, function(p:Player, t:Talkable):Bool {
+						Reg.talkables.remove(t);
+						t.destroy();
+						return true;
+					});
 					if (Reg.mapX == 1 && Reg.mapY == 1) {
 						// This is just a hack because i have 2 things on 1,1.
 						cast(FlxG.state, PlayState).showDialog("1,1NPC");
@@ -125,6 +130,10 @@ class Player extends FlxSprite {
 					Reg.timeDilationRate = Reg.superTimeDilationRate;
 				}
 			} else {
+				// Out of energy and tried to press Z.
+				if (FlxG.keys.Z) {
+
+				}
 				Reg.timebar.normalTime();
 			}
 		} else {

@@ -15,5 +15,6 @@ class Ladder extends FlxSprite {
 		super();
 
 		Reg.ladders.add(this);
+		this.makeGraphic(25, 25, 0);
 	}
 }

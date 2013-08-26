@@ -14,5 +14,6 @@ class OverlayText extends FlxText {
 
 		this.scrollFactor.x = 0;
 		this.scrollFactor.y = 0;
+		this.useShadow = true;
 	}
 }
