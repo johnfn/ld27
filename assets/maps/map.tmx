@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="120" height="100" tilewidth="25" tileheight="25">
+ <tileset firstgid="1" name="ld27" tilewidth="25" tileheight="25">
+  <image source="../images/ld27.png" width="500" height="300"/>
+ </tileset>
+ <layer name="nocollide" width="120" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt3UFu00AUxnF3BztWkEiwgluwR8BNygrYJwsECJY2nKB3qLgHh+AcuCIjvr4+O0498Rvb/yf91HZwksl8GcceN+WiqqoLAKtzdRDdD+T3y4juD45jPi4X8xFTelJAH9bmQethAf3AcI+NrdOWPG09O3y/6bmNve+taQcAzNfr1hun/fnA228KeA6YzqsC+gDyBfmCfNeGfJeNfMcp/boT+d7ftYjuC/muE/nexfX+5eJ6PwAAAACcX9Q6V8nrawAARPM+J+H9vv1bpy267zhOPydxam5dn72Ifk4AAAAAAAAAAAAAsBb87cNyaTbvWx9aH0/MLV3Tj34u6M/mc+tL62v172+Mkdu8bAvow1zxGfNl03wfZb7vFwU8v7Vj/i4b+S6bzfdlRtHPDeuZv98L6AP5gnxBvsB5VQX0AdPm+6mAfuF8+WI5vHxzr/+irHxPwfpQefRcpCtf1vpi9e1Dj/3/ZEPy7ULG5RuTL8o3Nl+u30zjd1C+a2P/3tDGaesy5ndH/mTKt2nVh6+N/Hwp3hUwzmuTa/7WB7vWXvLdm/ZLR9/jpG12B/o6ih67Ocg1f1N+KQPNNWXfVLdfB6nNy1xzTdvpY9QFjN0c5Mo35akZ25w169Su2+m2qX1nbruX7W++8nuN0+ebaC66f9W52Mi2NmO9nc7burqdcfQYlizX+6/OLx1/zVnztPtp+9rQ/HT/rMdvadvoMSxZzvdf+97rvf82Trvu0+vq7hy1c9ruG6LHsBTeNdn7zl9VVf/nmj3O/en4MaAtHV95t7eix3UN9NhH31+j+4U8dN/MOery2OOo9HN0v5CHHjvp8W7Oxzi2DtJ1DqXn1Dff24oeuznwzm/s+nOfIXna8y/NzJ5/dZ1nefmOqehxnzJfuy5h57Rt1/24l7n+u10Hazoey653n7uix30qdn3KrjF5+dtzXHtb+16+N+32/ux5cTMgn7EVPe5T0TUKb03Sjr/N0a5FetnZ14Guo3jb594XexU97lPma8da2WzsnPbWtuz1Bd3G3l9EfQt6XIqiKIqiKIqiKIqiKIoaWn8BpUtDMw==
+  </data>
+ </layer>
+ <layer name="Map" width="120" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup name="ButtonOfDoom" width="120" height="100">
+  <object gid="72" x="950" y="300"/>
+ </objectgroup>
+ <objectgroup name="Professor" width="120" height="100" visible="0">
+  <object gid="73" x="975" y="300"/>
+ </objectgroup>
+ <objectgroup name="NPC" width="120" height="100" visible="0">
+  <object gid="74" x="1175" y="850"/>
+ </objectgroup>
+ <objectgroup name="Ladder" width="120" height="100" visible="0">
+  <object gid="50" x="1450" y="325"/>
+  <object gid="50" x="1450" y="350"/>
+  <object gid="50" x="1450" y="375"/>
+  <object gid="50" x="1450" y="400"/>
+  <object gid="50" x="1450" y="425"/>
+  <object gid="50" x="1450" y="450"/>
+  <object gid="50" x="1450" y="475"/>
+  <object gid="50" x="1450" y="500"/>
+  <object gid="50" x="1450" y="525"/>
+  <object gid="70" x="1350" y="2000"/>
+  <object gid="70" x="1350" y="1975"/>
+  <object gid="70" x="1350" y="1950"/>
+  <object gid="70" x="1350" y="1925"/>
+  <object gid="70" x="1350" y="1900"/>
+  <object gid="70" x="1350" y="1875"/>
+  <object gid="70" x="1350" y="1825"/>
+  <object gid="70" x="1350" y="1850"/>
+  <object gid="70" x="1350" y="1800"/>
+  <object gid="70" x="1350" y="1775"/>
+  <object gid="70" x="1350" y="1750"/>
+  <object gid="70" x="1350" y="1725"/>
+  <object gid="70" x="2275" y="1550"/>
+  <object gid="70" x="2275" y="1525"/>
+  <object gid="70" x="2275" y="1500"/>
+  <object gid="70" x="2275" y="1475"/>
+  <object gid="70" x="2275" y="1450"/>
+  <object gid="70" x="2275" y="1425"/>
+  <object gid="70" x="2275" y="1400"/>
+  <object gid="70" x="2275" y="1375"/>
+  <object gid="70" x="2275" y="1350"/>
+ </objectgroup>
+ <objectgroup name="DoorJoke" width="120" height="100" visible="0">
+  <object gid="1" x="525" y="1325"/>
+ </objectgroup>
+ <objectgroup name="Recharger" width="120" height="100" visible="0">
+  <object gid="130" x="1250" y="1150"/>
+  <object gid="130" x="75" y="1800"/>
+  <object gid="130" x="875" y="2025"/>
+  <object gid="130" x="1550" y="1625"/>
+  <object gid="130" x="2250" y="1350"/>
+ </objectgroup>
+ <objectgroup name="DeathLaser" width="120" height="100" visible="0">
+  <object gid="170" x="1100" y="300"/>
+ </objectgroup>
+ <objectgroup name="ShooterLeft" width="120" height="100" visible="0">
+  <object gid="192" x="621" y="1857"/>
+  <object gid="192" x="2200" y="1925"/>
+  <object gid="192" x="2849" y="1378"/>
+ </objectgroup>
+ <objectgroup name="NoEnergy" width="120" height="100" visible="0">
+  <object gid="190" x="1000" y="1825"/>
+  <object gid="190" x="1000" y="1850"/>
+  <object gid="190" x="1000" y="1875"/>
+  <object gid="190" x="1000" y="1900"/>
+  <object gid="190" x="1000" y="1925"/>
+  <object gid="190" x="1000" y="1950"/>
+  <object gid="190" x="1000" y="1975"/>
+  <object gid="190" x="1000" y="2000"/>
+  <object gid="190" x="1000" y="2025"/>
+ </objectgroup>
+ <objectgroup name="ShooterRight" width="120" height="100" visible="0">
+  <object gid="193" x="975" y="1750"/>
+  <object gid="193" x="1550" y="1675"/>
+  <object gid="193" x="2350" y="1375"/>
+ </objectgroup>
+ <objectgroup name="Spikes" width="120" height="100" visible="0">
+  <object gid="191" x="1575" y="1725"/>
+  <object gid="191" x="1600" y="1725"/>
+  <object gid="191" x="1625" y="1725"/>
+  <object gid="191" x="1650" y="1725"/>
+  <object gid="191" x="1675" y="1725"/>
+  <object gid="191" x="1700" y="1725"/>
+  <object gid="191" x="1725" y="1750"/>
+  <object gid="191" x="1825" y="1700"/>
+  <object gid="191" x="1750" y="1800"/>
+  <object gid="191" x="1775" y="1800"/>
+  <object gid="191" x="1800" y="1800"/>
+  <object gid="191" x="1825" y="1800"/>
+  <object gid="191" x="1850" y="1800"/>
+  <object gid="191" x="1875" y="1800"/>
+  <object gid="191" x="1900" y="1800"/>
+  <object gid="191" x="1925" y="1800"/>
+  <object gid="191" x="1950" y="1800"/>
+  <object gid="191" x="1975" y="1800"/>
+  <object gid="191" x="2000" y="1800"/>
+  <object gid="191" x="2025" y="1800"/>
+  <object gid="191" x="2375" y="1450"/>
+  <object gid="191" x="2400" y="1450"/>
+  <object gid="191" x="2425" y="1450"/>
+  <object gid="191" x="2450" y="1450"/>
+  <object gid="191" x="2475" y="1450"/>
+  <object gid="191" x="2500" y="1450"/>
+  <object gid="191" x="2550" y="1450"/>
+  <object gid="191" x="2525" y="1450"/>
+  <object gid="191" x="2575" y="1450"/>
+  <object gid="191" x="2600" y="1450"/>
+  <object gid="191" x="2625" y="1450"/>
+  <object gid="191" x="2650" y="1450"/>
+  <object gid="191" x="2675" y="1450"/>
+  <object gid="191" x="2700" y="1450"/>
+  <object gid="191" x="2725" y="1450"/>
+  <object gid="191" x="2750" y="1450"/>
+  <object gid="191" x="2775" y="1450"/>
+  <object gid="191" x="2800" y="1450"/>
+  <object gid="191" x="2825" y="1450"/>
+ </objectgroup>
+</map>
