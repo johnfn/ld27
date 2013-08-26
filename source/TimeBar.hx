@@ -34,7 +34,7 @@ class TimeBar extends FlxSpriteGroup {
 		timeLeftText = new FlxText(bar.x, bar.y, 200, "Time Left: 10 seconds");
 		add(timeLeftText);
 
-		rateText = new FlxText(FlxG.width - 100, bar.y, 100, "Dilation rate: 10x");
+		rateText = new FlxText(FlxG.width - 100, bar.y, 100, "Slowdown rate: 10x");
 		add(rateText);
 
 		this.transformChildren(function(c:FlxSprite, theHaxeFlixelTeamDontUnderstandClosures:Dynamic) {

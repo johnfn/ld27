@@ -124,9 +124,7 @@ class Player extends FlxSprite {
 			Reg.energybar.exists = true;
 		}
 
-		if (isTimeSlow) {
-			Reg.timebar.normalTime();
-		}
+		Reg.timebar.normalTime();
 
 		var wantToClearOL:Bool = true;
 
