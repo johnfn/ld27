@@ -23,7 +23,7 @@ class ShooterEnemy extends Enemy {
 
 		if (facing == FlxObject.RIGHT) {
 			speed = 500;
-			maxCooldown = 2000;
+			maxCooldown = 1000;
 		}
 	}	
 
@@ -35,7 +35,7 @@ class ShooterEnemy extends Enemy {
 			vx = speed;
 		}
 
-		var b:Bullet = new Bullet(this.x, this.y, vx, 0, this);
+		var b:Bullet = new Bullet(this.x, this.y + 10, vx, 0, this);
 		FlxG.state.add(b);
 	}
 
