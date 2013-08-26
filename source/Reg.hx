@@ -45,7 +45,7 @@ class Reg {
 		// with a for loop or something. I guess I could read from a file, but that seems like more trouble than it's worth.
 
 		// yay ludum dare!!!!!
-		Reg.allDialog = [ ["0,0"], [ "randomnpc", "H..."
+		Reg.allDialog = [ ["1,1"], [ "randomnpc", "H..."
 							       , "you", "..."
 							       , "randomnpc", "E..."
 							       , "you", "..."

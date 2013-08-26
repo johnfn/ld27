@@ -12,8 +12,7 @@ import flixel.FlxObject;
 
 class NPC extends Talkable {
 	public function new() {
+		trace ("HEY its an NPC!");
 		super();
-
-		this.makeGraphic(25, 25, 0xff00ff00);
 	}
 }

@@ -119,26 +119,24 @@ class PlayState extends FlxState {
 		rc.x = 60;
 		rc.y = 350;
 
-		var npc:NPC = new NPC();
-		add(npc);
-		npc.x = 85;
-		npc.y = 350;
-
 		add(new ShooterEnemy(200, 350));
-
-		Reg.player = new Player();
-		add(Reg.player);
-
-		Reg.player.x = 50;
-		Reg.player.y = 50;
 
 		//var ls:LaserSource = new LaserSource(100, 150);
 		//add(ls);
 
 		//ls.followTarget(Reg.player);
 
+		Reg.mapX = 1;
+		Reg.mapY = 1;
+
+		Reg.player = new Player();
+		add(Reg.player);
+
+		Reg.player.x = 50 + Reg.mapX * Reg.mapWidth;
+		Reg.player.y = 50 + Reg.mapY * Reg.mapHeight;
+
 		FlxG.camera.follow(Reg.player, FlxCamera.STYLE_PLATFORMER);
-		FlxG.camera.setBounds(0, 0, Reg.mapWidth, Reg.mapHeight);
+		FlxG.camera.setBounds(Reg.mapX * Reg.mapWidth, Reg.mapY * Reg.mapHeight, Reg.mapWidth, Reg.mapHeight);
 
 	}
 	

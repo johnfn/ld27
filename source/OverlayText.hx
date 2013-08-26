@@ -11,5 +11,8 @@ import flixel.tile.FlxTilemap;
 class OverlayText extends FlxText {
 	public function new(text:String) {
 		super(100, 200, 600, text, 35);	
+
+		this.scrollFactor.x = 0;
+		this.scrollFactor.y = 0;
 	}
 }

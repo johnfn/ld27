@@ -99,6 +99,12 @@ class Player extends FlxSprite {
 			} else {
 				Reg.timebar.normalTime();
 			}
+		} else {
+			if (FlxG.keys.Z) {
+				if (touchingNPC) {
+					cast(FlxG.state, PlayState).showDialog();
+				}
+			}
 		}
 
 		if (FlxG.keys.justReleased("Y")) {
