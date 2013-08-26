@@ -24,7 +24,8 @@ class DialogTrigger extends FlxSprite {
 	}
 
 	public function getID():String {
-		trace(this.x + " " + this.y + " " + this.width + " " + this.height);
+		trace(Reg.triggers.length);
+		
 		Reg.triggers.remove(this);
 		FlxG.state.remove(this);
 
