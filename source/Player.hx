@@ -16,6 +16,8 @@ class Player extends FlxSprite {
 	private var touchingNPC:Bool = false;
 	private var touchingDoor:Bool = false;
 
+	private var touchingLadder:Bool = false;
+
 	public function new() {
 		super(0, 0);	
 
@@ -58,11 +60,21 @@ class Player extends FlxSprite {
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
 		touchingDoor = FlxG.overlap(this, Reg.doorJoke);
+		touchingLadder = false;
+		FlxG.overlap(this, Reg.ladders, null, function(p:Player, l:Ladder):Bool {
+			touchingLadder = true;
+
+			return false; //not obstructed by the ladder
+		});
 
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
 		FlxG.overlap(this, Reg.triggers, collideWithTrigger);
 
-		acceleration.y = 1000;
+		if (touchingLadder) {
+			acceleration.y = 0;
+		} else {
+			acceleration.y = 1000;
+		}
 
 		Reg.map.collideWithLevel(this);
 
@@ -82,6 +94,14 @@ class Player extends FlxSprite {
 		if (FlxG.keys.RIGHT) {
 			velocity.x = 300;
 			this.facing = FlxObject.RIGHT;
+		}
+
+		if (FlxG.keys.UP && touchingLadder) {
+			velocity.y = -300;
+		}
+
+		if (FlxG.keys.DOWN && touchingLadder) {
+			velocity.y = 300;
 		}
 
 		Reg.timeDilationRate = Reg.normalTimeDilationRate;

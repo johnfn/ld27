@@ -23,7 +23,6 @@ class DeathLaser extends LaserSource {
 
 	override public function update() {
 		this.maxLaserLength = (1 - Reg.timebar.millisecondsLeft / 10000) * eventualLaserLength + 25;
-		trace(this.maxLaserLength);
 
 		super.update();
 	}

@@ -36,6 +36,7 @@ class Reg {
 	static public var bullets:FlxGroup = new FlxGroup();
 	static public var talkables:FlxGroup = new FlxGroup();
 	static public var triggers:FlxGroup = new FlxGroup();
+	static public var ladders:FlxGroup = new FlxGroup();
 
 	static public var inactives:FlxGroup = new FlxGroup();
 	static public var doorJoke:FlxSprite;
