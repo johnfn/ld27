@@ -19,14 +19,15 @@ class ShooterEnemy extends Enemy {
 		this.facing = FlxObject.LEFT;
 
 		super(x, y);
+		makeGraphic(1,1,0);
 	}	
 
 	private function fireBullet() {
 		var vx:Int;
 		if (this.facing == FlxObject.LEFT) {
-			vx = speed * -1;
-		} else {
 			vx = speed;
+		} else {
+			vx = speed * -1;
 		}
 
 		var b:Bullet = new Bullet(this.x, this.y, vx, 0, this);

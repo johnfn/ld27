@@ -148,8 +148,8 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 1;
-		Reg.mapY = 0;
+		Reg.mapX = 0;
+		Reg.mapY = 1;
 
 		Reg.player = new Player();
 		add(Reg.player);
@@ -165,6 +165,10 @@ class PlayState extends FlxState {
 		Reg.overlay.exists = false;
 
 		this.add(Reg.dialogbox);
+
+		if (Reg.debug) {
+			Reg.endOfWorldTriggered = true;
+		}
 	}
 	
 	/**
@@ -190,11 +194,7 @@ class PlayState extends FlxState {
 
 		hasEntered.set(key, true);
 
-		if (key == '1,0') {
-			showDialog();
-		}
-
-		if (key == '1,1') {
+		if (key == '1,0' || key == '1,1' || key == '0,2') {
 			showDialog();
 		}
 	}

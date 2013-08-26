@@ -43,6 +43,8 @@ class Reg {
 
 	static public var allDialog:Array<Array<String>>;
 
+	static public var debug:Bool = true;
+
 	static public function initializeDialog() {
 		// This whole thing is a hack because I want a literal way of writing out dialog, rather than populating a map
 		// with a for loop or something. I guess I could read from a file, but that seems like more trouble than it's worth.
@@ -55,6 +57,10 @@ class Reg {
 								   , "you", "I bet that's a recharger. If I stand on it and press Z, I can recharge my time distortion energy."
 								   , "you", "It'll also act as a respawn point in case I die."
 						           ]
+						, ["0,2"], ["you", "Uh oh. Is that a shooter machine?",
+						            "you", "Crap... there's no way I can get past that without dying.",
+						            "you", "I guess I should just give up and let the world explode."
+						            ]
 			            ];
 
 		 

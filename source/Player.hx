@@ -43,7 +43,7 @@ class Player extends FlxSprite {
 
 	public function resetPosition() {
 		this.x = RechargeStation.lastActivatedRecharge.x;
-		this.y = RechargeStation.lastActivatedRecharge.y;
+		this.y = RechargeStation.lastActivatedRecharge.y  - 25;
 
 		FlxSpriteUtil.flicker(this, 5);
 	}
@@ -164,7 +164,7 @@ class Player extends FlxSprite {
 			cast(FlxG.state, PlayState).showOverlay("Z to talk!");
 		} else if (touchingDoor && !DoorJoke.playedOut) {
 			cast(FlxG.state, PlayState).showOverlay("Z to enter!");
-		} else if (Reg.endOfWorldTriggered && FlxG.keys.Z && !Reg.energybar.canDrain()) {
+		} else if (!touchingStation && Reg.endOfWorldTriggered && FlxG.keys.Z && !Reg.energybar.canDrain()) {
 			cast(FlxG.state, PlayState).showOverlay("No more energy!");
 		} else {
 			cast(FlxG.state, PlayState).hideOverlay();
