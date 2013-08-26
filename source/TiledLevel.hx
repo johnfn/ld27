@@ -122,6 +122,11 @@ class TiledLevel extends TiledMap
 			case "shooterright":
 				var s:ShooterEnemy = new ShooterEnemy(x, y, FlxObject.RIGHT);
 				FlxG.state.add(s);
+			case "spikes":
+				var ss:Spike = new Spike();
+				ss.x = x;
+				ss.y = y;
+				FlxG.state.add(ss);
 			case "noenergy":
 				var ne:NoEnergy = new NoEnergy();
 				ne.x = x;

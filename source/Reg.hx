@@ -37,6 +37,7 @@ class Reg {
 	static public var talkables:FlxGroup = new FlxGroup();
 	static public var triggers:FlxGroup = new FlxGroup();
 	static public var ladders:FlxGroup = new FlxGroup();
+	static public var spikes:FlxGroup = new FlxGroup();
 
 	static public var explainedNoEnergy:Bool = false;
 	static public var noenergy:FlxGroup = new FlxGroup();

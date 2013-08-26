@@ -65,6 +65,10 @@ class Player extends FlxSprite {
 		touchingDoor = FlxG.overlap(this, Reg.doorJoke);
 		touchingNoEnergy = FlxG.overlap(this, Reg.noenergy);
 
+		if (FlxG.overlap(this, Reg.spikes)) {
+			this.resetPosition();
+		}
+
 		touchingLadder = false;
 		FlxG.overlap(this, Reg.ladders, null, function(p:Player, l:Ladder):Bool {
 			touchingLadder = true;
