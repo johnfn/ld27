@@ -18,6 +18,8 @@ class Player extends FlxSprite {
 
 	private var touchingLadder:Bool = false;
 
+	private var outOfEnergyOL:Bool = false;
+
 	public function new() {
 		super(0, 0);	
 
@@ -106,57 +108,51 @@ class Player extends FlxSprite {
 
 		Reg.timeDilationRate = Reg.normalTimeDilationRate;
 
+		var isTimeSlow:Bool = false;
+
 		if (Reg.endOfWorldTriggered) {
 			Reg.timebar.exists = true;
 			Reg.energybar.exists = true;
-			if (FlxG.keys.Z && Reg.energybar.canDrain()) {
-				if (touchingStation) {
-					Reg.energybar.restore();
-				} else if (touchingNPC) {
-					FlxG.overlap(this, Reg.talkables, null, function(p:Player, t:Talkable):Bool {
-						Reg.talkables.remove(t);
-						t.destroy();
-						return true;
-					});
-					if (Reg.mapX == 1 && Reg.mapY == 1) {
-						// This is just a hack because i have 2 things on 1,1.
-						cast(FlxG.state, PlayState).showDialog("1,1NPC");
-					} else {
-						cast(FlxG.state, PlayState).showDialog();
-					}
+		}
+
+		if (isTimeSlow) {
+			Reg.timebar.normalTime();
+		}
+
+		var wantToClearOL:Bool = true;
+
+		if (FlxG.keys.Z) {
+			if (touchingStation) {
+				Reg.energybar.restore();
+			} else if (touchingDoor && !DoorJoke.playedOut) {
+				cast(FlxG.state, PlayState).showDialog("doorjoke");
+				DoorJoke.playedOut = true;
+			} else if (touchingNPC) {
+				FlxG.overlap(this, Reg.talkables, null, function(p:Player, t:Talkable):Bool {
+					Reg.talkables.remove(t);
+					t.destroy();
+					return true;
+				});
+				if (Reg.mapX == 1 && Reg.mapY == 1) {
+					// This is just a hack because i have 2 things on 1,1.
+					cast(FlxG.state, PlayState).showDialog("1,1NPC");
 				} else {
+					cast(FlxG.state, PlayState).showDialog();
+				}
+			} else if (Reg.endOfWorldTriggered) {
+				trace("eowt");
+				if (Reg.energybar.canDrain()) {
 					Reg.timebar.distortTime();
 					Reg.energybar.drain();
 					Reg.timeDilationRate = Reg.superTimeDilationRate;
-				}
-			} else {
-				// Out of energy and tried to press Z.
-				if (FlxG.keys.Z) {
-
-				}
-				Reg.timebar.normalTime();
-			}
-		} else {
-			if (FlxG.keys.Z) {
-				if (touchingNPC) {
-					if (Reg.mapX == 1 && Reg.mapY == 1) {
-						// This is just a hack because i have 2 things on 1,1.
-						cast(FlxG.state, PlayState).showDialog("1,1NPC");
-					} else {
-						cast(FlxG.state, PlayState).showDialog();
-					}
-				}
-
-				if (touchingDoor) {
-					cast(FlxG.state, PlayState).showDialog("doorjoke");
-					DoorJoke.playedOut = true;
+				} else {
+					cast(FlxG.state, PlayState).showOverlay("No energy!");
+					outOfEnergyOL = true;
+					wantToClearOL = false;
 				}
 			}
 		}
 
-		if (FlxG.keys.justReleased("Y")) {
-			cast(FlxG.state, PlayState).showDialog();
-		}
 
 		checkOverlays();
 	}
@@ -168,6 +164,8 @@ class Player extends FlxSprite {
 			cast(FlxG.state, PlayState).showOverlay("Z to talk!");
 		} else if (touchingDoor && !DoorJoke.playedOut) {
 			cast(FlxG.state, PlayState).showOverlay("Z to enter!");
+		} else if (Reg.endOfWorldTriggered && FlxG.keys.Z && !Reg.energybar.canDrain()) {
+			cast(FlxG.state, PlayState).showOverlay("No more energy!");
 		} else {
 			cast(FlxG.state, PlayState).hideOverlay();
 		}
