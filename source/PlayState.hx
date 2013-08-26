@@ -18,6 +18,8 @@ class PlayState extends FlxState {
 	public static var NORMAL_MODE:Int = 1;
 	public static var DIALOG_MODE:Int = 2;
 
+	public static var paused:Bool = false;
+
 	public var mode:Int = 1;
 
 	public var hasTalked:Map<String, Bool> ;
@@ -144,11 +146,6 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		var ls:LaserSource = new LaserSource(100, 150);
-		add(ls);
-
-		ls.followTarget(Reg.player);
-
 		Reg.mapX = 1;
 		Reg.mapY = 0;
 
@@ -241,11 +238,20 @@ class PlayState extends FlxState {
 				FlxSpriteUtil.fill(LaserSource.surface, 0x00000000);
 			}
 
-			super.update();
+			if (FlxG.keys.justPressed("P")) {
+				paused = !paused;
+				if (paused) {
+					showOverlay("PAUSED - PRESS P");
+				}
+			}
 
-			Reg.inactives.setAll("active", true);
-			Reg.inactives.update();
-			Reg.inactives.setAll("active", false);
+			if (!paused) {
+				super.update();
+
+				Reg.inactives.setAll("active", true);
+				Reg.inactives.update();
+				Reg.inactives.setAll("active", false);
+			}
 		} else if (mode == DIALOG_MODE) {
 			Reg.dialogbox.update();
 
