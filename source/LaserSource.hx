@@ -25,8 +25,13 @@ class LaserSource extends Enemy {
 	private var target:FlxObject = null;
 
 	private var collisionDummy:MapAwareSprite;
+	public var maxLaserLength:Float = 0;
+	public var outerLaserColor:Int = 0xffaa0000;
+	public var innerLaserColor:Int = 0xffff4444;
 
-	public function new(x:Int, y:Int) {
+	public static var surface:FlxSprite = null;
+
+	public function new(x:Float, y:Float) {
 		this.facing = FlxObject.LEFT;
 		collisionDummy = new MapAwareSprite(0, 0); // Flixel has no way to check point-object collisions, only object-object collisions.
 		collisionDummy.width = 1;
@@ -34,12 +39,14 @@ class LaserSource extends Enemy {
 
 		this.laserSourceX = x;
 		this.laserSourceY = y;
+		this.maxLaserLength = Reg.mapWidth + Reg.mapHeight;
 
 		super(0, 0);
 
-		this.makeGraphic(Reg.mapWidth, Reg.mapHeight, 0x00000000);
-		this.width = Reg.mapWidth;
-		this.height = Reg.mapHeight;
+		if (LaserSource.surface == null) {
+			LaserSource.surface = new FlxSprite(0, 0).makeGraphic(Reg.mapWidth, Reg.mapHeight, 0x00000000);
+			FlxG.state.add(LaserSource.surface);
+		}
 	}	
 
 	public function followTarget(target:FlxObject) {
@@ -70,9 +77,13 @@ class LaserSource extends Enemy {
 		collisionDummy.x = laserSourceX;
 		collisionDummy.y = laserSourceY;
 
-		while (collisionDummy.onCurrentMap() && !Reg.map.collideWithLevel(collisionDummy)) {
-			collisionDummy.x += dx * 10;
-			collisionDummy.y += dy * 10;
+		var laserLengthLeft = maxLaserLength;
+
+		while (collisionDummy.onCurrentMap() && !Reg.map.collideWithLevel(collisionDummy) && laserLengthLeft > 0) {
+			collisionDummy.x += dx * 1;
+			collisionDummy.y += dy * 1;
+
+			laserLengthLeft -= 1;
 		}
 
 		laserDestX = collisionDummy.x;
@@ -82,15 +93,19 @@ class LaserSource extends Enemy {
 	override public function update() {
 		super.update();
 
-		++ticker;
+		surface.x = Reg.mapX * Reg.mapWidth;
+		surface.y = Reg.mapY * Reg.mapHeight;
 
-		FlxSpriteUtil.fill(this, 0x00000000);
+		if (laserSourceX >= surface.x && laserSourceX <= surface.x + Reg.mapWidth && 
+			laserSourceY >= surface.y && laserSourceY <= surface.y + Reg.mapHeight) {
+			++ticker;
 
-		raycastToWall();
+			raycastToWall();
 
-		// Outer
-		FlxSpriteUtil.drawLine(this, laserSourceX, laserSourceY, laserDestX, laserDestY, 0xffaa0000, 6 + Std.int(Math.sin(ticker / Reg.timeDilationRate) * 4)); //pulsing brought to you with thanks to Math.sin
-		// Inner
-		FlxSpriteUtil.drawLine(this, laserSourceX, laserSourceY, laserDestX, laserDestY, 0xffff4444, 1);
+			// Outer
+			FlxSpriteUtil.drawLine(LaserSource.surface, laserSourceX % Reg.mapWidth, laserSourceY % Reg.mapWidth, laserDestX % Reg.mapWidth, laserDestY % Reg.mapWidth, outerLaserColor, 6 + Std.int(Math.sin(ticker / Reg.timeDilationRate) * 4)); //pulsing brought to you with thanks to Math.sin
+			// Inner
+			FlxSpriteUtil.drawLine(LaserSource.surface, (laserSourceX) % Reg.mapWidth, laserSourceY % Reg.mapWidth, (laserDestX) % Reg.mapWidth, laserDestY % Reg.mapWidth, innerLaserColor, 1);
+		}
 	}
 }

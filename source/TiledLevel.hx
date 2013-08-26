@@ -87,6 +87,7 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 
+
 		switch (o.type.toLowerCase()) {
 			case "buttonofdoom":
 				var dt:DialogTrigger = new DialogTrigger(o.type.toLowerCase());
@@ -105,6 +106,11 @@ class TiledLevel extends TiledMap
 				rc.x = x;
 				rc.y = y;
 				FlxG.state.add(rc);
+			case "deathlaser":
+				var dl:DeathLaser = new DeathLaser(x, y);
+				dl.x = 0;
+				dl.y = 0;
+				FlxG.state.add(dl);
 		}
 	}
 

@@ -9,6 +9,7 @@ import flixel.util.FlxMath;
 import flixel.tile.FlxTilemap;
 import flixel.FlxCamera;
 import flixel.util.FlxRect;
+import flixel.util.FlxSpriteUtil;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -143,10 +144,10 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		//var ls:LaserSource = new LaserSource(100, 150);
-		//add(ls);
+		var ls:LaserSource = new LaserSource(100, 150);
+		add(ls);
 
-		//ls.followTarget(Reg.player);
+		ls.followTarget(Reg.player);
 
 		Reg.mapX = 1;
 		Reg.mapY = 0;
@@ -236,6 +237,10 @@ class PlayState extends FlxState {
 		checkUpdateScreen();
 
 		if (mode == NORMAL_MODE) {
+			if (LaserSource.surface != null) {
+				FlxSpriteUtil.fill(LaserSource.surface, 0x00000000);
+			}
+
 			super.update();
 
 			Reg.inactives.setAll("active", true);
