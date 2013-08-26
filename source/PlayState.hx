@@ -57,6 +57,14 @@ class PlayState extends FlxState {
 									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
 									   ]);
 			}
+
+			if (special == "doorjoke") {
+				Reg.dialogbox.display([ "you", "...Huh?"
+									   , "you", "Enter that door?"
+									   , "you", "Do you have no respect for personal privacy?"
+									   , "you", "What kind of monster are you??"
+									   ]);
+			}
 		} else {
 			Reg.dialogbox.display(Reg.getDialogAt(Reg.mapX, Reg.mapY));
 		}

@@ -14,6 +14,7 @@ import flixel.FlxObject;
 class Player extends FlxSprite {
 	private var touchingStation:Bool = false;
 	private var touchingNPC:Bool = false;
+	private var touchingDoor:Bool = false;
 
 	public function new() {
 		super(0, 0);	
@@ -56,6 +57,7 @@ class Player extends FlxSprite {
 
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
+		touchingDoor = FlxG.overlap(this, Reg.doorJoke);
 
 		FlxG.overlap(this, Reg.bullets, collideWithBullet);
 		FlxG.overlap(this, Reg.triggers, collideWithTrigger);
@@ -104,6 +106,11 @@ class Player extends FlxSprite {
 				if (touchingNPC) {
 					cast(FlxG.state, PlayState).showDialog();
 				}
+				
+				if (touchingDoor) {
+					cast(FlxG.state, PlayState).showDialog("doorjoke");
+					DoorJoke.playedOut = true;
+				}
 			}
 		}
 
@@ -119,6 +126,8 @@ class Player extends FlxSprite {
 			cast(FlxG.state, PlayState).showOverlay("Z to recharge!");
 		} else if (touchingNPC) {
 			cast(FlxG.state, PlayState).showOverlay("Z to talk!");
+		} else if (touchingDoor && !DoorJoke.playedOut) {
+			cast(FlxG.state, PlayState).showOverlay("Z to enter!");
 		} else {
 			cast(FlxG.state, PlayState).hideOverlay();
 		}

@@ -4,6 +4,7 @@ import flixel.util.FlxSave;
 import flixel.FlxState;
 import flixel.tile.FlxTilemap;
 import flixel.group.FlxGroup;
+import flixel.FlxSprite;
 
 /**
 * Handy, pre-built Registry class that can be used to store 
@@ -37,6 +38,7 @@ class Reg {
 	static public var triggers:FlxGroup = new FlxGroup();
 
 	static public var inactives:FlxGroup = new FlxGroup();
+	static public var doorJoke:FlxSprite;
 
 	static public var allDialog:Array<Array<String>>;
 

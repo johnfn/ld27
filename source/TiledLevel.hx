@@ -96,6 +96,10 @@ class TiledLevel extends TiledMap
 				var npc:NPC = new NPC();
 				npc.x = x;
 				npc.y = y;
+			case "doorjoke":
+				var dj:DoorJoke = new DoorJoke();
+				dj.x = x;
+				dj.y = y;
 		}
 	}
 
