@@ -19,9 +19,15 @@ class PlayState extends FlxState {
 
 	public var mode:Int = 1;
 
+	public var hasTalked:Map<String, Bool> ;
+
 	public function showDialog(special:String = "") {
+		if (hasTalked == null) hasTalked = new Map();
+
 		if (special != "") {
-			trace(special);
+			if (hasTalked.exists(special)) return;
+			hasTalked.set(special, true);
+
 			if (special == "buttonofdoom") {
 				Reg.endOfWorldTriggered = true;
 				Reg.dialogbox.display([ "button", "beep!"
@@ -40,12 +46,14 @@ class PlayState extends FlxState {
 									   , "professor", "...causing a chain reaction that will BLOW UP THE WORLD."
 									   , "you", "Why do you have a button that causes the end of the world, anyways?"
 									   , "professor", "That's not important right now."
-									   , "you", "Well, we have a few minutes right? Let's just move the crystal or something."
-									   , "professor", "You're right, we have a few minutes. Let's think this through."
+									   , "you", "Well, let's just move the crystal or something."
+									   , "professor", "Nah, that's impossible. But see that green switch up there? If you hit that, the laser will turn off."
+									   , "you", "Um... I can't jump that high."
+									   , "professor", "Drat! Well, we have a few minutes. Let's think this through."
 									   , "narrator", "You shift your feet as you contemplate the problem."
 									   , "button", "BEEP BEEP BOOP BEEP"
 									   , "professor", "OH GOD NO."
-									   , "professor", "YOU JUST PRESSED THE BUTTON AGAIN. NOW WE ONLY HAVE 10 SECONDS!!!"
+									   , "professor", "YOU JUST PRESSED THE BUTTON AGAIN. THAT MAKES THE LASER SPEED UP! NOW WE ONLY HAVE 10 SECONDS!!!"
 									   , "you", "..."
 									   , "you", "Derp."
 									   , "professor", "Here. Put this on. It's highly experimental, and it may explode at any time, but it's our only hope!"
@@ -60,9 +68,9 @@ class PlayState extends FlxState {
 
 			if (special == "doorjoke") {
 				Reg.dialogbox.display([ "you", "...Huh?"
-									   , "you", "Enter that door?"
+									   , "you", "Enter that house?"
 									   , "you", "Do you have no respect for personal privacy?"
-									   , "you", "What kind of monster are you??"
+									   , "you", "I REFUSE."
 									   ]);
 			}
 		} else {
@@ -134,8 +142,8 @@ class PlayState extends FlxState {
 
 		//ls.followTarget(Reg.player);
 
-		Reg.mapX = 1;
-		Reg.mapY = 1;
+		Reg.mapX = 0;
+		Reg.mapY = 0;
 
 		Reg.player = new Player();
 		add(Reg.player);
@@ -145,7 +153,6 @@ class PlayState extends FlxState {
 
 		FlxG.camera.follow(Reg.player, FlxCamera.STYLE_PLATFORMER);
 		FlxG.camera.setBounds(Reg.mapX * Reg.mapWidth, Reg.mapY * Reg.mapHeight, Reg.mapWidth, Reg.mapHeight);
-
 	}
 	
 	/**
