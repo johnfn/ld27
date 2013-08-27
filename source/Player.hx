@@ -167,6 +167,7 @@ class Player extends FlxSprite {
 				PlayState.tilesAdded = false;
 			}
 		}
+		
 		if (Reg.timeDilationRate == Reg.normalTimeDilationRate) {
 			if (!PlayState.tilesAdded) {
 				PlayState.bgtiles.visible = true;

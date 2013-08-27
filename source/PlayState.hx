@@ -158,7 +158,7 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 0;
+		Reg.mapX = 3;
 		Reg.mapY = 0;
 
 		Reg.player = new Player();
