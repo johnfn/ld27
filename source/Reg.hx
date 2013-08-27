@@ -5,6 +5,7 @@ import flixel.FlxState;
 import flixel.tile.FlxTilemap;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 
 /**
 * Handy, pre-built Registry class that can be used to store 
@@ -30,7 +31,7 @@ class Reg {
 	static public var mapWidth:Int = 750;
 	static public var mapHeight:Int = 750;
 
-	static public var endOfWorldTriggered:Bool = false;
+	static public var endOfWorldTriggered:Bool = true;
 
 	static public var rechargeStations:FlxGroup = new FlxGroup();
 	static public var bullets:FlxGroup = new FlxGroup();
@@ -49,6 +50,9 @@ class Reg {
 	static public var allDialog:Array<Array<String>>;
 
 	static public var debug:Bool = true;
+
+	static public var music:FlxSound = new FlxSound();
+	static public var slowwwdown:FlxSound = new FlxSound();
 
 	static public function initializeDialog() {
 		// This whole thing is a hack because I want a literal way of writing out dialog, rather than populating a map

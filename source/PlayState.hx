@@ -72,6 +72,9 @@ class PlayState extends FlxState {
 									   , "you", "Neat!"
 									   , "professor", "...Sure. Now, quickly, find a way to deactivate the laser, before the world explodes!"
 									   ]);
+
+				Reg.music.loadEmbedded("music/ld27-theme-fixes.mp3", true);
+				Reg.music.play();
 			}
 
 			if (special == "noenergy") {
@@ -90,6 +93,9 @@ class PlayState extends FlxState {
 			}
 
 			if (special == "youwin") {
+				Reg.music.loadEmbedded("music/ld27-ending.mp3", true);
+				Reg.music.play();
+
 				Reg.dialogbox.display([ "you", "I'm back!"
 									  , "youD", "I didn't find anything."
 									  , "professor", "Darn."
@@ -104,7 +110,7 @@ class PlayState extends FlxState {
 									  , "blacklaser", "Not the BLACK LASER DESTROYER!!!"
 									  , "narrator", "You watch as the black laser is destroyed in slow motion."
 									  , "professor", "HA! Die, black laser! DIE!"
-									  , "blacklaser", "All...",
+									  , "blacklaser", "All..."
 									  , "blacklaser", "I ever wanted..."
 									  , "blacklaser", "Was to be loved..."
 									  , "blacklaser", ";.;"
@@ -172,6 +178,10 @@ class PlayState extends FlxState {
 
 	override public function create():Void {
 		Reg.initializeDialog();
+		Reg.music.loadEmbedded("music/ld27-safeandsound.mp3", true);
+		Reg.music.play();
+
+		Reg.slowwwdown.loadEmbedded("music/ld27-slowdown.mp3", true);	
 
 		Reg.dialogbox = new DialogBox();
 
@@ -229,6 +239,7 @@ class PlayState extends FlxState {
 		if (Reg.debug) {
 			Reg.endOfWorldTriggered = true;
 		}
+
 	}
 	
 	/**

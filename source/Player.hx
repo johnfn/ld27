@@ -173,12 +173,23 @@ class Player extends FlxSprite {
 					Reg.timebar.distortTime();
 					Reg.energybar.drain();
 					Reg.timeDilationRate = Reg.superTimeDilationRate;
+
+					if (!Reg.slowwwdown.playing) {
+						trace("hello");
+						Reg.music.pause();
+						Reg.slowwwdown.play();
+					}
 				} else {
 					cast(FlxG.state, PlayState).showOverlay("No energy!");
 					outOfEnergyOL = true;
 					wantToClearOL = false;
 				}
 			}
+		}
+
+		if (Reg.slowwwdown.playing && Reg.timeDilationRate == Reg.normalTimeDilationRate) {
+			Reg.slowwwdown.pause();
+			Reg.music.play();
 		}
 
 		// Funky blur effect
