@@ -23,6 +23,8 @@ class PlayState extends FlxState {
 	public static var bgtiles:FlxGroup;
 	public static var tilesAdded:Bool = true;
 
+	public static var youwin:Bool = false;
+
 	public var mode:Int = 1;
 
 	public var hasTalked:Map<String, Bool> ;
@@ -85,6 +87,43 @@ class PlayState extends FlxState {
 									   , "you", "Do you have no respect for personal privacy?"
 									   , "you", "I REFUSE."
 									   ]);
+			}
+
+			if (special == "youwin") {
+				Reg.dialogbox.display([ "you", "I'm back!"
+									  , "youD", "I didn't find anything."
+									  , "professor", "Darn."
+									  , "professor", "Hey wait!"
+									  , "professor", "Is that a *BLACK LASER DESTROYER*?"
+									  , "you", "Oh, yeah I guess so."
+									  , "professor", "Perfect! Let's just turn this on..."
+									  , "narrator", "The machine begins to hum."
+									  , "blacklaser", "What!"
+									  , "blacklaser", "No!"
+									  , "blacklaser", "My one weakness!"
+									  , "blacklaser", "Not the BLACK LASER DESTROYER!!!"
+									  , "narrator", "You watch as the black laser is destroyed in slow motion."
+									  , "professor", "HA! Die, black laser! DIE!"
+									  , "blacklaser", "All...",
+									  , "blacklaser", "I ever wanted..."
+									  , "blacklaser", "Was to be loved..."
+									  , "blacklaser", ";.;"
+									  , "narrator", "The black laser gasps it's last breath, and dies."
+									  , "youhuh", "..."
+									  , "professor", "..."
+									  , "youD", "..."
+									  , "professor", "..."
+									  , "youD", "..."
+									  , "professor", "..."
+									  , "youhuh", "..."
+									  , "professor", "..."
+									  , "you", "WE SAVED THE WORLD!!!!"
+									  , "professor", "YAY!"
+									  , "button", "HOORAY!"
+									  , "randomnpc", "YAY!"
+									  , "narrator", "THE END."
+									   ]);
+				PlayState.youwin = true;
 			}
 
 			if (special == "1,1NPC") {
@@ -169,7 +208,7 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 0;
+		Reg.mapX = 2;
 		Reg.mapY = 0;
 
 		Reg.player = new Player();
@@ -257,6 +296,10 @@ class PlayState extends FlxState {
 		checkUpdateScreen();
 
 		if (mode == NORMAL_MODE) {
+			if (youwin) {
+				FlxG.switchState(new YouWInState.YouWinState());
+			}
+
 			if (LaserSource.surface != null) {
 				FlxSpriteUtil.fill(LaserSource.surface, 0x00000000);
 			}

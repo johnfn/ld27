@@ -72,6 +72,11 @@ class Player extends FlxSprite {
 			this.play("right");
 		}
 
+		if (Reg.mapX == 1 && Reg.mapY == 0 && Player.hasTreasure) {
+			cast(FlxG.state, PlayState).showDialog("youwin");
+			return;
+		}
+
 
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
