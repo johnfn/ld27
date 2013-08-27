@@ -38,32 +38,32 @@ class PlayState extends FlxState {
 				Reg.endOfWorldTriggered = true;
 				Reg.dialogbox.display([ "button", "beep!"
 									   , "professor", "OH MY GOD YOU IDIOT!"
-									   , "you", "...Huh?"
+									   , "youhuh", "...Huh?"
 									   , "professor", "YOU STEPPED ON THE BUTTON!"
-									   , "you", "What button?"
+									   , "youhuh", "What button?"
 									   , "professor", "THE ONE YOU STEPPED ON."
-									   , "you", "..."
+									   , "youhuh", "..."
 									   , "you", "Oh yeah!"
 									   , "professor", "THE END OF THE WORLD BUTTON!!!"
-									   , "you", "What?"
+									   , "youhuh", "What?"
 									   , "professor", "By pressing that button, you've triggered the end of the world!!!"
-									   , "you", "Er..."
+									   , "youhuh", "Er..."
 									   , "professor", "That button causes a laser to be emitted from this laser cannon here, which will crash into the red crystal here in a few minutes..."
 									   , "professor", "...causing a chain reaction that will BLOW UP THE WORLD."
 									   , "you", "Why do you have a button that causes the end of the world, anyways?"
 									   , "professor", "That's not important right now."
 									   , "you", "Well, let's just move the crystal or something."
-									   , "professor", "Nah, that's impossible. But see that green switch up there? If you hit that, the laser will turn off."
-									   , "you", "Um... I can't jump that high."
-									   , "professor", "Drat! Well, we have a few minutes. Let's think this through."
+									   , "professor", "Nah, that's impossible."
+									   , "youhuh", "Hmm."
+									   , "professor", "Well, we have a few minutes. Let's think this through."
 									   , "narrator", "You shift your feet as you contemplate the problem."
 									   , "button", "BEEP BEEP BOOP BEEP"
 									   , "professor", "OH GOD NO."
 									   , "professor", "YOU JUST PRESSED THE BUTTON AGAIN. THAT MAKES THE LASER SPEED UP! NOW WE ONLY HAVE 10 SECONDS!!!"
 									   , "you", "..."
-									   , "you", "Derp."
+									   , "youD", "Derp."
 									   , "professor", "Here. Put this on. It's highly experimental, and it may explode at any time, but it's our only hope!"
-									   , "you", "...What is it?"
+									   , "youhuh", "...What is it?"
 									   , "professor", "It's my latest creation - a time distortion vest. It'll make time pass for you 20 times slower than it does for anyone else."
 									   , "professor", "The bar on the bottom of your visor will show you the amount of time you have left before the end of the world."
 									   , "professor", "You can also press Z to - for a little bit - slow down time even more. But that requires energy."
@@ -93,13 +93,24 @@ class PlayState extends FlxState {
 								       , "randomnpc", "E..."
 								       , "you", "..."
 								       , "randomnpc", "L..."
-								       , "you", "...zzz..."
+								       , "youzzz", "...zzz..."
 								       , "randomnpc", "L..."
 								       , "you", "Watch your tongue, old lady!"
 								       , "randomnpc", "...O."
 								       , "you", "..."
 								       , "you", "...Oh."
 								       , "narrator", "You realize that talking to other people when you're moving so fast may not be the best use of your time."
+								       ]);
+			}
+
+			if (special == "treasuredialog") {
+				Reg.dialogbox.display([ "you", "At last! After all that hard work, treasure!"
+								       , "you", "Maybe it'll be gold!"
+								       , "you", "Maybe it'll be diamonds!"
+								       , "narrator", "You open the box."
+								       , "you", "What the... This sucks."
+								       , "narrator", "You got 1 *BLACK LASER DESTROYER*."
+								       , "you", "I can't possibly think of a use for this."
 								       ]);
 			}
 		} else {
@@ -158,7 +169,7 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 3;
+		Reg.mapX = 0;
 		Reg.mapY = 0;
 
 		Reg.player = new Player();

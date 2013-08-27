@@ -1,5 +1,7 @@
 package;
 
+using StringTools;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -16,6 +18,7 @@ class DialogBox extends FlxSpriteGroup {
 	public var text:Array<String>;
 	public var textbox:FlxText;
 	public var nextText:Int = 0;
+	public var speakerTxt:FlxText;
 
 	public function new() {
 		super();
@@ -27,6 +30,10 @@ class DialogBox extends FlxSpriteGroup {
 		textbox.useShadow = true;
 
 		this.add(textbox);
+
+		speakerTxt = new FlxText(125, 273, 150, "", 10);
+		speakerTxt.useShadow = true;
+		this.add(speakerTxt);
 
 		this.visible = false;
 
@@ -51,6 +58,12 @@ class DialogBox extends FlxSpriteGroup {
 		var speaker:String = text[nextText];
 		dialogContainer.loadGraphic('images/dialog-$speaker.png');
 		nextText++;
+
+		if (speaker.startsWith("you")) speaker = "You";
+		if (speaker.startsWith("randomnpc")) speaker = "Some random person";
+		if (speaker.startsWith("prof")) speaker = "Professor";
+
+		speakerTxt.text = speaker;
 
 		if (nextText < text.length) {
 			textbox.text = text[nextText];

@@ -132,6 +132,11 @@ class TiledLevel extends TiledMap
 				ne.x = x;
 				ne.y = y;
 				FlxG.state.add(ne);
+			case "treasure":
+				var t:Treasure = new Treasure();
+				t.x = x;
+				t.y = y;
+				FlxG.state.add(t);
 		}
 	}
 

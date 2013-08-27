@@ -21,13 +21,17 @@ class Player extends FlxSprite {
 	private var outOfEnergyOL:Bool = false;
 	private var touchingNoEnergy:Bool = false;
 
+	public static var hasTreasure:Bool = false;
+
 	public function new() {
 		super(0, 0);	
 
 		this.drag.x = 2000;
 		this.drag.y = 2000;
 
-		makeGraphic(25, 25, 0xffff0000);
+		this.loadGraphic("images/character.png", true, false, 25, 25);
+		this.addAnimation("left", [0]);
+		this.addAnimation("right", [1]);
 	}
 
 	public function collideWithBullet(player:Player, bullet:Bullet) {
@@ -62,10 +66,22 @@ class Player extends FlxSprite {
 	public override function update() {
 		super.update();
 
+		if (this.facing == FlxObject.LEFT) {
+			this.play("left");
+		} else {
+			this.play("right");
+		}
+
+
 		touchingStation = FlxG.overlap(this, Reg.rechargeStations, touchingStationCB);
 		touchingNPC = FlxG.overlap(this, Reg.talkables);
 		touchingDoor = FlxG.overlap(this, Reg.doorJoke);
 		touchingNoEnergy = FlxG.overlap(this, Reg.noenergy);
+
+		if (FlxG.overlap(this, Reg.treasure)) {
+			cast(FlxG.state, PlayState).showDialog("treasuredialog");
+			Player.hasTreasure = true;
+		}
 
 		if (FlxG.overlap(this, Reg.spikes)) {
 			this.resetPosition();

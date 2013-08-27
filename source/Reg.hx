@@ -38,6 +38,7 @@ class Reg {
 	static public var triggers:FlxGroup = new FlxGroup();
 	static public var ladders:FlxGroup = new FlxGroup();
 	static public var spikes:FlxGroup = new FlxGroup();
+	static public var treasure:FlxGroup = new FlxGroup();
 
 	static public var explainedNoEnergy:Bool = false;
 	static public var noenergy:FlxGroup = new FlxGroup();
@@ -62,20 +63,20 @@ class Reg {
 								   , "you", "It'll also act as a respawn point in case I die."
 						           ]
 						, ["0,2"], ["you", "Uh oh. Is that a shooter machine?",
-						            "you", "Crap... there's no way I can get past that without dying.",
-						            "you", "I guess I should just give up and let the world explode."
+						            "youD", "Crap... there's no way I can get past that without dying.",
+						            "youD", "I guess I should just give up and let the world explode."
 						            ]
 						, ["1,2"], ["you", "Ha! This screen looks exactly the same as the last one.",
-						            "you", "...Except that weird glimmering section of the air.",
+						            "youhuh", "...Except that weird glimmering section of the air.",
 						            "you", "Eh, I'm sure it'll do absolutely nothing."
 						            ]
 						, ["2,2"], ["you", "Phew...",
 						            "you", "That was REALLY HARD.",
 						            "you", "Well, I bet was probably the hardest part of my adventure.",
-						            "you", "I'm sure this next room won't be... HOLY CRAP."
+						            "youD", "I'm sure this next room won't be... HOLY CRAP."
 						            ]
 						 , ["3,1"], ["you", "HOLY CRAP! I can't jump that far.",
-						             "you", "D:",
+						             "youD", "D:",
 						             "you", "I give up!"
 						            ]
 			            ];
