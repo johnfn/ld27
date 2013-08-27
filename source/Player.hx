@@ -17,6 +17,7 @@ class Player extends FlxSprite {
 	private var touchingDoor:Bool = false;
 
 	private var touchingLadder:Bool = false;
+	public static var isawkeydown:Bool = false;
 
 	private var outOfEnergyOL:Bool = false;
 	private var touchingNoEnergy:Bool = false;
@@ -150,7 +151,11 @@ class Player extends FlxSprite {
 		var wantToClearOL:Bool = true;
 		var ps:PlayState = cast(FlxG.state, PlayState);
 
-		if (FlxG.keys.Z) {
+		if (FlxG.keys.justPressed("Z")) {
+			isawkeydown = true;
+		}
+
+		if (FlxG.keys.Z && isawkeydown) {
 			if (touchingStation) {
 				Reg.energybar.restore();
 			} else if (touchingDoor && !DoorJoke.playedOut) {
@@ -175,7 +180,6 @@ class Player extends FlxSprite {
 					Reg.timeDilationRate = Reg.superTimeDilationRate;
 
 					if (!Reg.slowwwdown.playing) {
-						trace("hello");
 						Reg.music.pause();
 						Reg.slowwwdown.play();
 					}

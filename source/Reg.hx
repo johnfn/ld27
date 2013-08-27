@@ -31,7 +31,7 @@ class Reg {
 	static public var mapWidth:Int = 750;
 	static public var mapHeight:Int = 750;
 
-	static public var endOfWorldTriggered:Bool = true;
+	static public var endOfWorldTriggered:Bool = false;
 
 	static public var rechargeStations:FlxGroup = new FlxGroup();
 	static public var bullets:FlxGroup = new FlxGroup();
@@ -49,7 +49,7 @@ class Reg {
 
 	static public var allDialog:Array<Array<String>>;
 
-	static public var debug:Bool = true;
+	static public var debug:Bool = false;
 
 	static public var music:FlxSound = new FlxSound();
 	static public var slowwwdown:FlxSound = new FlxSound();

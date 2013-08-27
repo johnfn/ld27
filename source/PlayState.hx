@@ -32,6 +32,7 @@ class PlayState extends FlxState {
 	public function showDialog(special:String = "") {
 		if (hasTalked == null) hasTalked = new Map();
 
+
 		if (special != "") {
 			if (hasTalked.exists(special)) return;
 			hasTalked.set(special, true);
@@ -81,6 +82,15 @@ class PlayState extends FlxState {
 				Reg.dialogbox.display(["you", "GAH! All my energy is gone!!!",
 									   "you", "So THAT's what the sparkles do?",
 									   "you", "Why is there even a recharge station here if the energy is COMPLETELY USELESS?"
+					                   ]);
+			}
+
+			if (special == "forgiving") {
+				Reg.dialogbox.display(["professor", "Holy crap!",
+									   "professor", "Did you really just run out of time?!?",
+									   "you", "Er...",
+									   "professor", "I think I've found a way to slow down the beam a little bit. Should buy you some extra time.",
+									   "professor", "BUT HURRY!!!"
 					                   ]);
 			}
 
@@ -140,7 +150,7 @@ class PlayState extends FlxState {
 								       , "randomnpc", "L..."
 								       , "youzzz", "...zzz..."
 								       , "randomnpc", "L..."
-								       , "you", "Watch your tongue, old lady!"
+								       , "youO", "Watch your tongue, old lady!"
 								       , "randomnpc", "...O."
 								       , "you", "..."
 								       , "you", "...Oh."
@@ -218,7 +228,7 @@ class PlayState extends FlxState {
 
 		add(new ShooterEnemy(200, 350));
 
-		Reg.mapX = 2;
+		Reg.mapX = 0;
 		Reg.mapY = 0;
 
 		Reg.player = new Player();
@@ -339,6 +349,7 @@ class PlayState extends FlxState {
 			if (Reg.dialogbox.done()) {
 				Reg.dialogbox.backToNormal(); // bad coding... oh well
 				mode = NORMAL_MODE;
+				Player.isawkeydown = false;
 			}
 		}
 	}	

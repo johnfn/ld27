@@ -48,10 +48,14 @@ class TimeBar extends FlxSpriteGroup {
 
 		millisecondsLeft = millisecondsLeft - (1000 / (FlxG.framerate * timePassRate));
 
+		if (millisecondsLeft < 0) {
+			cast(FlxG.state, PlayState).showDialog("forgiving");
+			millisecondsLeft += 1500;
+		}
+
 		var newWidth:Float = (millisecondsLeft / 10000.0) * FlxG.width; 
 
-		if (newWidth > 0) {
-
+		if (newWidth > 2) {
 			if (timePassRate == 10) {
 				bar.makeGraphic(Std.int(newWidth), 15, 0xff0000ff);
 			} else if (timePassRate == 100) {
